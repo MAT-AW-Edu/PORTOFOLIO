@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembelajaran Panjang Busur Lingkaran</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      color: #2c5aa0;
+      background: white;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      border-bottom: 3px solid #2c5aa0;
+    }
+
+    .header h1 {
+      font-size: 42px;
+      margin: 0 0 10px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .header p {
+      font-size: 20px;
+      margin: 0;
+      opacity: 0.95;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      flex: 1;
+      min-width: 150px;
+      padding: 15px 25px;
+      background: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .tab-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .tab-button.active {
+      background: #2c5aa0;
+      color: white;
+    }
+
+    .content-section {
+      display: none;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+
+    .content-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .materi-box {
+      background: #f8f9fa;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      border-left: 5px solid #2c5aa0;
+    }
+
+    .materi-box h3 {
+      color: #2c5aa0;
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .formula {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 15px 0;
+      text-align: center;
+      font-size: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .canvas-container {
+      text-align: center;
+      margin: 25px 0;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+
+    canvas {
+      border: 2px solid #2c5aa0;
+      border-radius: 10px;
+      background: white;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .example-box {
+      background: #e3f2fd;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 5px solid #2196f3;
+    }
+
+    .example-box h4 {
+      color: #1976d2;
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .calculation-steps {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .step {
+      margin: 15px 0;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border-left: 3px solid #2c5aa0;
+    }
+
+    .step-number {
+      display: inline-block;
+      background: #2c5aa0;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    .exercise-item {
+      background: #fff3e0;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 5px solid #ff9800;
+    }
+
+    .exercise-item h4 {
+      color: #f57c00;
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .input-group {
+      margin: 15px 0;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .input-group input:focus, .input-group select:focus {
+      outline: none;
+      border-color: #2c5aa0;
+    }
+
+    .scratch-area {
+      min-height: 200px;
+      border: 2px dashed #999;
+      border-radius: 8px;
+      padding: 15px;
+      background: white;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .scratch-area:focus {
+      outline: none;
+      border-color: #2c5aa0;
+    }
+
+    .math-toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .math-button {
+      padding: 8px 15px;
+      background: #2c5aa0;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .math-button:hover {
+      background: #1e3f73;
+    }
+
+    .fraction {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      text-align: center;
+      margin: 0 3px;
+    }
+
+    .fraction-numerator {
+      border-bottom: 2px solid #333;
+      padding: 0 5px 2px 5px;
+    }
+
+    .fraction-denominator {
+      padding: 2px 5px 0 5px;
+    }
+
+    .strikethrough {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .check-button {
+      background: #2c5aa0;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-top: 15px;
+    }
+
+    .check-button:hover {
+      background: #1e3f73;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .result-box {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+
+    .result-box.correct {
+      background: #d4edda;
+      color: #155724;
+      border: 2px solid #c3e6cb;
+      display: block;
+    }
+
+    .result-box.incorrect {
+      background: #f8d7da;
+      color: #721c24;
+      border: 2px solid #f5c6cb;
+      display: block;
+    }
+
+    .note {
+      background: #fff9c4;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      border-left: 4px solid #fbc02d;
+    }
+
+    .note strong {
+      color: #f57f17;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 32px;
+      }
+      
+      .header p {
+        font-size: 16px;
+      }
+      
+      .tab-button {
+        min-width: 100px;
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+      
+      .content-section {
+        padding: 20px;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <h1 id="main-title">Pembelajaran Panjang Busur Lingkaran</h1>
+    <p id="subtitle">Belajar Menghitung Panjang Busur dengan Mudah dan Menyenangkan</p>
+   </div>
+   <div class="tabs"><button class="tab-button active" onclick="switchTab('materi')">Materi</button> <button class="tab-button" onclick="switchTab('contoh')">Contoh Soal</button> <button class="tab-button" onclick="switchTab('mandiri')">Latihan Mandiri</button> <button class="tab-button" onclick="switchTab('latihan')">Latihan Soal</button> <button class="tab-button" onclick="switchTab('custom')">Custom Latihan</button>
+   </div>
+   <div id="materi" class="content-section active">
+    <div class="materi-box">
+     <h3>Apa itu Busur Lingkaran?</h3>
+     <p>Busur lingkaran adalah bagian dari keliling lingkaran yang dibatasi oleh dua titik. Bayangkan seperti lengkungan jembatan atau bagian tepi roda!</p>
+     <div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px;">
+       <div class="canvas-container">
+        <canvas id="materiCanvas" width="400" height="400"></canvas>
+        <p><strong>Gambar di atas menunjukkan busur AB dengan sudut pusat θ</strong></p>
+       </div>
+      </div>
+      <div style="flex: 1; min-width: 250px;">
+       <div class="input-group"><label>Jari-jari (r) dalam cm:</label> <input type="number" id="materi_r" min="10" max="50" value="30" oninput="updateMateriVisualization()" style="width: 100px;">
+       </div>
+       <div class="input-group"><label>Sudut Pusat (θ) dalam derajat:</label> <input type="number" id="materi_theta" min="30" max="270" value="90" oninput="updateMateriVisualization()" style="width: 100px;">
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="materi-box">
+     <h3>Rumus Panjang Busur</h3>
+     <div class="formula">
+      <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">θ</span><span class="fraction-denominator">360°</span></span> × Keliling Lingkaran</p>
+      <p style="margin-top: 15px;">Panjang Busur = <span class="fraction"><span class="fraction-numerator">θ</span><span class="fraction-denominator">360°</span></span> × 2 × π × r</p>
+     </div>
+     <div class="note"><strong>Catatan Penting:</strong>
+      <ul>
+       <li>θ (theta) = sudut pusat dalam derajat (°)</li>
+       <li>r = jari-jari lingkaran</li>
+       <li>π = 22/7 (jika r kelipatan 7) atau 3,14 (jika r bukan kelipatan 7)</li>
+      </ul>
+     </div>
+    </div>
+    <div class="materi-box">
+     <h3>Kapan Menggunakan π = 22/7 atau 3,14?</h3>
+     <p><strong>Gunakan π = 22/7 jika:</strong></p>
+     <ul>
+      <li>Jari-jari (r) adalah kelipatan 7 (contoh: 7, 14, 21, 28, dst.)</li>
+      <li>Ini membuat perhitungan lebih mudah karena bisa disederhanakan</li>
+     </ul>
+     <p><strong>Gunakan π = 3,14 jika:</strong></p>
+     <ul>
+      <li>Jari-jari (r) bukan kelipatan 7 (contoh: 5, 10, 12, 15, dst.)</li>
+     </ul>
+     <div class="note"><strong>Tips Penyederhanaan Cerdas:</strong>
+      <p><strong>1. Tulis r² sebagai r × r</strong> agar bisa dicoret dengan penyebut!</p>
+      <p>Contoh: 14² = 14 × 14, sehingga bisa dicoret dengan 7 dan 4</p>
+      <p><strong>2. Coret sebelum mengalikan</strong> untuk menghindari angka besar!</p>
+      <p>Contoh: <span class="fraction"><span class="fraction-numerator">22 × 35 × 35</span><span class="fraction-denominator">5 × 7</span></span></p>
+      <p>• Coret 35 dengan 5 → 35 ÷ 5 = 7</p>
+      <p>• Coret 35 dengan 7 → 35 ÷ 7 = 5</p>
+      <p>• Hasil: 22 × 7 × 5 = 22 × 35 = 770</p>
+      <p><strong>3. Cari faktor persekutuan terbesar (FPB)</strong> untuk penyederhanaan maksimal!</p>
+      <p>Contoh: <span class="fraction"><span class="fraction-numerator">22 × 14</span><span class="fraction-denominator">2</span></span> → Coret 22 dan 2 dengan 2 → 11 × 14</p>
+     </div>
+    </div>
+   </div>
+   <div id="contoh" class="content-section">
+    <div class="example-box">
+     <h4>Contoh Soal 1: Menggunakan π = 22/7</h4>
+     <p><strong>Soal:</strong> Hitunglah panjang busur lingkaran dengan jari-jari 14 cm dan sudut pusat 90°!</p>
+     <div class="canvas-container">
+      <canvas id="contoh1Canvas" width="350" height="350"></canvas>
+     </div>
+     <div class="calculation-steps">
+      <h4>Penyelesaian:</h4>
+      <div class="step"><span class="step-number">1</span> <strong>Identifikasi yang diketahui:</strong>
+       <p>r = 14 cm (kelipatan 7, maka π = 22/7)</p>
+       <p>θ = 90°</p>
+      </div>
+      <div class="step"><span class="step-number">2</span> <strong>Gunakan rumus:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">θ</span><span class="fraction-denominator">360°</span></span> × 2 × π × r</p>
+      </div>
+      <div class="step"><span class="step-number">3</span> <strong>Substitusi nilai:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">90°</span><span class="fraction-denominator">360°</span></span> × 2 × <span class="fraction"><span class="fraction-numerator">22</span><span class="fraction-denominator">7</span></span> × 14</p>
+      </div>
+      <div class="step"><span class="step-number">4</span> <strong>Sederhanakan sudut:</strong>
+       <p><span class="fraction"><span class="fraction-numerator">90</span><span class="fraction-denominator">360</span></span> = <span class="fraction"><span class="fraction-numerator">1</span><span class="fraction-denominator">4</span></span></p>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">1</span><span class="fraction-denominator">4</span></span> × 2 × <span class="fraction"><span class="fraction-numerator">22</span><span class="fraction-denominator">7</span></span> × 14</p>
+      </div>
+      <div class="step"><span class="step-number">5</span> <strong>Gabungkan konstanta:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">1 × 2 × 22 × 14</span><span class="fraction-denominator">4 × 7</span></span> = <span class="fraction"><span class="fraction-numerator">2 × 22 × 14</span><span class="fraction-denominator">28</span></span></p>
+      </div>
+      <div class="step"><span class="step-number">6</span> <strong>Coret 14 dengan 7, dan 2 dengan 4:</strong>
+       <p>Coret 14 dengan 7: 14 ÷ 7 = 2</p>
+       <p>Coret 2 dengan 4: 4 ÷ 2 = 2</p>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">2 × 22 × <span class="strikethrough">14</span> 2</span><span class="fraction-denominator"><span class="strikethrough">28</span> 2</span></span> = <span class="fraction"><span class="fraction-numerator">2 × 22 × 2</span><span class="fraction-denominator">2</span></span></p>
+      </div>
+      <div class="step"><span class="step-number">7</span> <strong>Sederhanakan dengan membagi 2:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator"><span class="strikethrough">2</span> × 22 × 2</span><span class="fraction-denominator"><span class="strikethrough">2</span></span></span> = 22 × 2</p>
+      </div>
+      <div class="step"><span class="step-number">8</span> <strong>Hitung hasil akhir:</strong>
+       <p>Panjang Busur = 22 × 2 = 44 cm</p>
+      </div>
+      <div class="result-box correct">
+       ✅ Jadi, panjang busur lingkaran adalah <strong>44 cm</strong>
+      </div>
+     </div>
+    </div>
+    <div class="example-box">
+     <h4>Contoh Soal 2: Menggunakan π = 3,14</h4>
+     <p><strong>Soal:</strong> Hitunglah panjang busur lingkaran dengan jari-jari 10 cm dan sudut pusat 72°!</p>
+     <div class="canvas-container">
+      <canvas id="contoh2Canvas" width="350" height="350"></canvas>
+     </div>
+     <div class="calculation-steps">
+      <h4>Penyelesaian:</h4>
+      <div class="step"><span class="step-number">1</span> <strong>Identifikasi yang diketahui:</strong>
+       <p>r = 10 cm (bukan kelipatan 7, maka π = 3,14)</p>
+       <p>θ = 72°</p>
+      </div>
+      <div class="step"><span class="step-number">2</span> <strong>Gunakan rumus:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">θ</span><span class="fraction-denominator">360°</span></span> × 2 × π × r</p>
+      </div>
+      <div class="step"><span class="step-number">3</span> <strong>Substitusi nilai:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">72°</span><span class="fraction-denominator">360°</span></span> × 2 × 3,14 × 10</p>
+      </div>
+      <div class="step"><span class="step-number">4</span> <strong>Sederhanakan sudut:</strong>
+       <p><span class="fraction"><span class="fraction-numerator">72</span><span class="fraction-denominator">360</span></span> = <span class="fraction"><span class="fraction-numerator">1</span><span class="fraction-denominator">5</span></span></p>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">1</span><span class="fraction-denominator">5</span></span> × 2 × 3,14 × 10</p>
+      </div>
+      <div class="step"><span class="step-number">5</span> <strong>Gabungkan konstanta:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">1 × 2 × 3,14 × 10</span><span class="fraction-denominator">5</span></span> = <span class="fraction"><span class="fraction-numerator">2 × 3,14 × 10</span><span class="fraction-denominator">5</span></span></p>
+      </div>
+      <div class="step"><span class="step-number">6</span> <strong>Sederhanakan 10/5:</strong>
+       <p>Panjang Busur = 2 × 3,14 × <span class="fraction"><span class="fraction-numerator"><span class="strikethrough">10</span> 2</span><span class="fraction-denominator"><span class="strikethrough">5</span> 1</span></span> = 2 × 3,14 × 2</p>
+      </div>
+      <div class="step"><span class="step-number">7</span> <strong>Hitung hasil akhir:</strong>
+       <p>Panjang Busur = 2 × 3,14 × 2 = 4 × 3,14 = 12,56 cm</p>
+      </div>
+      <div class="result-box correct">
+       ✅ Jadi, panjang busur lingkaran adalah <strong>12,56 cm</strong>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div id="latihan" class="content-section">
+    <div class="exercise-item">
+     <h4>Latihan Soal 1</h4>
+     <p><strong>Soal:</strong> Hitunglah panjang busur lingkaran dengan jari-jari 21 cm dan sudut pusat 120°!</p>
+     <div class="canvas-container">
+      <canvas id="latihan1Canvas" width="350" height="350"></canvas>
+     </div>
+     <div class="input-group"><label>Masukkan jawaban Anda (dalam cm):</label> <input type="number" id="answer1">
+     </div>
+     <div class="input-group"><label>Area Coret-coretan (Tulis perhitungan Anda di sini):</label>
+      <div class="math-toolbar"><button class="math-button" onclick="insertFraction('scratch1')">Pecahan ÷</button> <button class="math-button" onclick="insertStrikethrough('scratch1')">Coret</button> <button class="math-button" onclick="insertSymbol('scratch1', '×')">×</button> <button class="math-button" onclick="insertSymbol('scratch1', '²')">²</button> <button class="math-button" onclick="insertSymbol('scratch1', '°')">°</button> <button class="math-button" onclick="clearScratch('scratch1')">Hapus</button>
+      </div>
+      <div id="scratch1" class="scratch-area" contenteditable="true">
+       Tulis perhitungan Anda di sini...
+      </div>
+     </div><button class="check-button" onclick="checkAnswer(1, 462)">Periksa Jawaban</button>
+     <div id="result1" class="result-box"></div>
+    </div>
+    <div class="exercise-item">
+     <h4>Latihan Soal 2</h4>
+     <p><strong>Soal:</strong> Hitunglah panjang busur lingkaran dengan jari-jari 15 cm dan sudut pusat 60°!</p>
+     <div class="canvas-container">
+      <canvas id="latihan2Canvas" width="350" height="350"></canvas>
+     </div>
+     <div class="input-group"><label>Masukkan jawaban Anda (dalam cm):</label> <input type="number" step="0.01" id="answer2">
+     </div>
+     <div class="input-group"><label>Area Coret-coretan (Tulis perhitungan Anda di sini):</label>
+      <div class="math-toolbar"><button class="math-button" onclick="insertFraction('scratch2')">Pecahan ÷</button> <button class="math-button" onclick="insertStrikethrough('scratch2')">Coret</button> <button class="math-button" onclick="insertSymbol('scratch2', '×')">×</button> <button class="math-button" onclick="insertSymbol('scratch2', '²')">²</button> <button class="math-button" onclick="insertSymbol('scratch2', '°')">°</button> <button class="math-button" onclick="clearScratch('scratch2')">Hapus</button>
+      </div>
+      <div id="scratch2" class="scratch-area" contenteditable="true">
+       Tulis perhitungan Anda di sini...
+      </div>
+     </div><button class="check-button" onclick="checkAnswer(2, 117.75)">Periksa Jawaban</button>
+     <div id="result2" class="result-box"></div>
+    </div>
+    <div class="exercise-item">
+     <h4>Latihan Soal 3</h4>
+     <p><strong>Soal:</strong> Hitunglah panjang busur lingkaran dengan jari-jari 28 cm dan sudut pusat 45°!</p>
+     <div class="canvas-container">
+      <canvas id="latihan3Canvas" width="350" height="350"></canvas>
+     </div>
+     <div class="input-group"><label>Masukkan jawaban Anda (dalam cm):</label> <input type="number" id="answer3">
+     </div>
+     <div class="input-group"><label>Area Coret-coretan (Tulis perhitungan Anda di sini):</label>
+      <div class="math-toolbar"><button class="math-button" onclick="insertFraction('scratch3')">Pecahan ÷</button> <button class="math-button" onclick="insertStrikethrough('scratch3')">Coret</button> <button class="math-button" onclick="insertSymbol('scratch3', '×')">×</button> <button class="math-button" onclick="insertSymbol('scratch3', '²')">²</button> <button class="math-button" onclick="insertSymbol('scratch3', '°')">°</button> <button class="math-button" onclick="clearScratch('scratch3')">Hapus</button>
+      </div>
+      <div id="scratch3" class="scratch-area" contenteditable="true">
+       Tulis perhitungan Anda di sini...
+      </div>
+     </div><button class="check-button" onclick="checkAnswer(3, 308)">Periksa Jawaban</button>
+     <div id="result3" class="result-box"></div>
+    </div>
+   </div>
+   <div id="mandiri" class="content-section">
+    <div class="exercise-item">
+     <h4>Latihan Mandiri - Langkah demi Langkah</h4>
+     <p><strong>Soal:</strong> Hitunglah panjang busur lingkaran dengan jari-jari 35 cm dan sudut pusat 72°!</p>
+     <div class="canvas-container">
+      <canvas id="mandiriCanvas" width="350" height="350"></canvas>
+     </div>
+     <div class="calculation-steps">
+      <div class="step"><span class="step-number">1</span> <strong>Identifikasi yang diketahui:</strong>
+       <div class="input-group"><label>Jari-jari (r) = _____ cm</label> <input type="number" id="step1_r" placeholder="Masukkan nilai r">
+       </div>
+       <div class="input-group"><label>Sudut pusat (θ) = _____ °</label> <input type="number" id="step1_theta" placeholder="Masukkan nilai θ">
+       </div>
+       <div class="input-group"><label>Nilai π yang digunakan = _____</label> <select id="step1_pi"> <option value="">Pilih nilai π</option> <option value="22/7">22/7 (karena r kelipatan 7)</option> <option value="3.14">3,14 (karena r bukan kelipatan 7)</option> </select>
+       </div><button class="check-button" onclick="checkStep(1)">Periksa Langkah 1</button>
+       <div id="result_step1" class="result-box"></div>
+      </div>
+      <div class="step" id="step2_container" style="display: none;"><span class="step-number">2</span> <strong>Substitusi ke dalam rumus:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">θ</span><span class="fraction-denominator">360°</span></span> × 2 × π × r</p>
+       <div class="input-group"><label>Panjang Busur = <span class="fraction"><span class="fraction-numerator">____</span><span class="fraction-denominator">360°</span></span> × 2 × _____ × _____</label>
+        <div class="math-toolbar"><button class="math-button" onclick="insertSymbolToInput('step2_substitution', '/')">÷</button> <button class="math-button" onclick="insertSymbolToInput('step2_substitution', '×')">×</button> <button class="math-button" onclick="insertSymbolToInput('step2_substitution', '²')">²</button> <button class="math-button" onclick="insertSymbolToInput('step2_substitution', '°')">°</button>
+        </div><input type="text" id="step2_substitution" placeholder="Contoh: 72/360 × 2 × 22/7 × 35">
+       </div><button class="check-button" onclick="checkStep(2)">Periksa Langkah 2</button>
+       <div id="result_step2" class="result-box"></div>
+      </div>
+      <div class="step" id="step3_container" style="display: none;"><span class="step-number">3</span> <strong>Sederhanakan sudut:</strong>
+       <div class="input-group"><label><span class="fraction"><span class="fraction-numerator">72</span><span class="fraction-denominator">360</span></span> = <span class="fraction"><span class="fraction-numerator">____</span><span class="fraction-denominator">____</span></span></label>
+        <div class="math-toolbar"><button class="math-button" onclick="insertSymbolToInput('step3_angle', '/')">÷</button>
+        </div><input type="text" id="step3_angle" placeholder="Contoh: 1/5">
+       </div><button class="check-button" onclick="checkStep(3)">Periksa Langkah 3</button>
+       <div id="result_step3" class="result-box"></div>
+      </div>
+      <div class="step" id="step4_container" style="display: none;"><span class="step-number">4</span> <strong>Gabungkan konstanta:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">1</span><span class="fraction-denominator">5</span></span> × 2 × <span class="fraction"><span class="fraction-numerator">22</span><span class="fraction-denominator">7</span></span> × 35</p>
+       <div class="input-group"><label>Panjang Busur = <span class="fraction"><span class="fraction-numerator">1 × 2 × 22 × 35</span><span class="fraction-denominator">5 × 7</span></span> = <span class="fraction"><span class="fraction-numerator">2 × 22 × 35</span><span class="fraction-denominator">_____</span></span></label>
+        <div class="math-toolbar"><button class="math-button" onclick="insertSymbolToInput('step4_denominator', '×')">×</button>
+        </div><input type="number" id="step4_denominator" placeholder="Masukkan hasil 5 × 7">
+       </div><button class="check-button" onclick="checkStep(4)">Periksa Langkah 4</button>
+       <div id="result_step4" class="result-box"></div>
+      </div>
+      <div class="step" id="step5_container" style="display: none;"><span class="step-number">5</span> <strong>Coret 35 dengan 5, dan 35 dengan 7:</strong>
+       <p>Panjang Busur = <span class="fraction"><span class="fraction-numerator">2 × 22 × 35</span><span class="fraction-denominator">35</span></span></p>
+       <div class="input-group"><label>Coret 35 dengan 5: 35 ÷ 5 = _____ dan coret dengan 7: 35 ÷ 7 = _____</label>
+        <div class="math-toolbar"><button class="math-button" onclick="insertSymbolToInput('step5_simplify', '÷')">÷</button> <button class="math-button" onclick="insertSymbolToInput('step5_simplify', ',')">koma</button>
+        </div><input type="text" id="step5_simplify" placeholder="Contoh: 7, 5">
+       </div><button class="check-button" onclick="checkStep(5)">Periksa Langkah 5</button>
+       <div id="result_step5" class="result-box"></div>
+      </div>
+      <div class="step" id="step6_container" style="display: none;"><span class="step-number">6</span> <strong>Hitung hasil akhir:</strong>
+       <p>Panjang Busur = 2 × 22 = 44 cm</p>
+       <div class="input-group"><label>Panjang Busur = 2 × 22 = _____ cm</label>
+        <div class="math-toolbar"><button class="math-button" onclick="insertSymbolToInput('step6_final', '×')">×</button>
+        </div><input type="number" id="step6_final" placeholder="Masukkan hasil akhir">
+       </div><button class="check-button" onclick="checkStep(6)">Periksa Langkah 6</button>
+       <div id="result_step6" class="result-box"></div>
+      </div>
+      <div id="completion_message" style="display: none;" class="result-box correct">
+       Selamat! Anda telah menyelesaikan semua langkah dengan benar!<br>
+        Panjang busur lingkaran adalah <strong>44 cm</strong>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div id="custom" class="content-section">
+    <div class="exercise-item">
+     <h4>Custom Latihan - Buat Soal Sendiri</h4>
+     <p>Buat soal luas juring lingkaran dengan nilai yang Anda inginkan!</p>
+     <div class="input-group"><label>Masukkan Jari-jari (r) dalam cm:</label> <input type="number" id="custom_r" placeholder="Contoh: 21" min="1" max="100">
+     </div>
+     <div class="input-group"><label>Masukkan Sudut Pusat (θ) dalam derajat:</label> <input type="number" id="custom_theta" placeholder="Contoh: 90" min="1" max="360">
+     </div><button class="check-button" onclick="generateCustomProblem()">Buat Soal</button>
+     <div id="custom_problem" style="display: none;">
+      <div class="canvas-container">
+       <canvas id="customCanvas" width="350" height="350"></canvas>
+      </div>
+      <div class="example-box" style="margin-top: 20px;">
+       <h4 id="custom_question">Soal Custom Anda</h4>
+       <div class="input-group"><label>Masukkan jawaban Anda (dalam cm²):</label> <input type="number" step="0.01" id="custom_answer">
+       </div><button class="check-button" onclick="checkCustomAnswer()">Periksa Jawaban</button>
+       <div id="custom_result" class="result-box"></div><button class="check-button" onclick="showCustomSolution()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-left: 10px;">Lihat Kunci Jawaban</button>
+      </div>
+      <div id="custom_solution" style="display: none;" class="calculation-steps">
+       <h4>Kunci Jawaban Lengkap:</h4><!-- Solution steps will be generated dynamically -->
+      </div>
+     </div>
+    </div>
+    <div class="exercise-item">
+     <h4>Generator Soal Acak</h4>
+     <p>Klik tombol di bawah untuk mendapatkan soal acak!</p><button class="check-button" onclick="generateRandomProblem()">Buat Soal Acak</button>
+     <div id="random_problem" style="display: none;">
+      <div class="canvas-container">
+       <canvas id="randomCanvas" width="350" height="350"></canvas>
+      </div>
+      <div class="example-box" style="margin-top: 20px;">
+       <h4 id="random_question">Soal Acak</h4>
+       <div class="input-group"><label>Masukkan jawaban Anda (dalam cm²):</label> <input type="number" step="0.01" id="random_answer">
+       </div><button class="check-button" onclick="checkRandomAnswer()">Periksa Jawaban</button>
+       <div id="random_result" class="result-box"></div><button class="check-button" onclick="showRandomSolution()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-left: 10px;">Lihat Kunci Jawaban</button>
+      </div>
+      <div id="random_solution" style="display: none;" class="calculation-steps">
+       <h4>Kunci Jawaban Lengkap:</h4><!-- Solution steps will be generated dynamically -->
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_title: "Pembelajaran Luas Juring Lingkaran",
+      subtitle: "Belajar Menghitung Luas Juring dengan Mudah dan Menyenangkan",
+      primary_color: "#667eea",
+      secondary_color: "#764ba2",
+      accent_color: "#f5576c",
+      text_color: "#333333",
+      background_color: "#ffffff"
+    };
+
+    let config = { ...defaultConfig };
+
+    function drawCircleWithSector(canvasId, radius, angle, label) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const displayRadius = Math.min(canvas.width, canvas.height) * 0.3;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw full circle
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, displayRadius, 0, 2 * Math.PI);
+      ctx.strokeStyle = '#2c5aa0';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Draw sector
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, displayRadius, -Math.PI / 2, -Math.PI / 2 + (angle * Math.PI / 180));
+      ctx.closePath();
+      ctx.fillStyle = '#2c5aa040';
+      ctx.fill();
+      ctx.strokeStyle = '#2c5aa0';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Draw arc (busur) with red color
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, displayRadius, -Math.PI / 2, -Math.PI / 2 + (angle * Math.PI / 180));
+      ctx.strokeStyle = '#e74c3c';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+
+      // Draw radius lines
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(centerX, centerY - displayRadius);
+      ctx.strokeStyle = '#e74c3c';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      const endX = centerX + displayRadius * Math.sin(angle * Math.PI / 180);
+      const endY = centerY - displayRadius * Math.cos(angle * Math.PI / 180);
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(endX, endY);
+      ctx.stroke();
+
+      // Draw center point
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 4, 0, 2 * Math.PI);
+      ctx.fillStyle = '#e74c3c';
+      ctx.fill();
+
+      // Labels
+      ctx.fillStyle = '#333333';
+      ctx.font = 'bold 16px Arial';
+      ctx.fillText('O', centerX - 20, centerY + 5);
+      ctx.fillText('A', centerX - 20, centerY - displayRadius - 10);
+      ctx.fillText('B', endX + 10, endY);
+      
+      ctx.font = '14px Arial';
+      ctx.fillText(`r = ${radius} cm`, centerX + 10, centerY - displayRadius / 2);
+      ctx.fillText(`θ = ${angle}°`, centerX + 20, centerY - 20);
+
+      // Add arc label
+      const midAngle = -Math.PI / 2 + (angle * Math.PI / 360);
+      const labelRadius = displayRadius + 20;
+      const arcLabelX = centerX + labelRadius * Math.sin(midAngle);
+      const arcLabelY = centerY - labelRadius * Math.cos(midAngle);
+      
+      ctx.fillStyle = '#e74c3c';
+      ctx.font = 'bold 14px Arial';
+      ctx.fillText('Busur AB', arcLabelX - 25, arcLabelY);
+    }
+
+    function updateMateriVisualization() {
+      const r = parseInt(document.getElementById('materi_r').value);
+      const theta = parseInt(document.getElementById('materi_theta').value);
+      
+      // Update the canvas
+      drawCircleWithSector('materiCanvas', r, theta, 'Juring AOB');
+    }
+
+    function switchTab(tabName) {
+      const tabs = document.querySelectorAll('.tab-button');
+      const sections = document.querySelectorAll('.content-section');
+      
+      tabs.forEach(tab => tab.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
+      
+      event.target.classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+    }
+
+    function insertFraction(scratchId) {
+      const scratch = document.getElementById(scratchId);
+      const fraction = document.createElement('span');
+      fraction.className = 'fraction';
+      fraction.innerHTML = '<span class="fraction-numerator" contenteditable="true">a</span><span class="fraction-denominator" contenteditable="true">b</span>';
+      
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        range.insertNode(fraction);
+        range.collapse(false);
+      }
+    }
+
+    function insertStrikethrough(scratchId) {
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0 && selection.toString().length > 0) {
+        const range = selection.getRangeAt(0);
+        const span = document.createElement('span');
+        span.className = 'strikethrough';
+        span.textContent = selection.toString();
+        range.deleteContents();
+        range.insertNode(span);
+      }
+    }
+
+    function insertSymbol(scratchId, symbol) {
+      const scratch = document.getElementById(scratchId);
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const textNode = document.createTextNode(symbol);
+        range.insertNode(textNode);
+        range.collapse(false);
+      }
+    }
+
+    function clearScratch(scratchId) {
+      const scratch = document.getElementById(scratchId);
+      scratch.innerHTML = 'Tulis perhitungan Anda di sini...';
+    }
+
+    function insertSymbolToInput(inputId, symbol) {
+      const input = document.getElementById(inputId);
+      const cursorPos = input.selectionStart;
+      const textBefore = input.value.substring(0, cursorPos);
+      const textAfter = input.value.substring(input.selectionEnd);
+      
+      input.value = textBefore + symbol + textAfter;
+      input.focus();
+      input.setSelectionRange(cursorPos + symbol.length, cursorPos + symbol.length);
+    }
+
+    function checkAnswer(questionNum, correctAnswer) {
+      const userAnswer = parseFloat(document.getElementById(`answer${questionNum}`).value);
+      const resultBox = document.getElementById(`result${questionNum}`);
+      
+      if (isNaN(userAnswer)) {
+        resultBox.className = 'result-box incorrect';
+        resultBox.textContent = '❌ Silakan masukkan jawaban Anda terlebih dahulu!';
+        return;
+      }
+
+      const tolerance = 0.5;
+      if (Math.abs(userAnswer - correctAnswer) < tolerance) {
+        resultBox.className = 'result-box correct';
+        resultBox.textContent = `✅ Benar! Jawaban Anda ${userAnswer} cm² sudah tepat!`;
+      } else {
+        resultBox.className = 'result-box incorrect';
+        resultBox.textContent = `❌ Belum tepat. Coba periksa kembali perhitungan Anda. Jawaban yang benar adalah ${correctAnswer} cm²`;
+      }
+    }
+
+    async function onConfigChange(newConfig) {
+      const mainTitle = document.getElementById('main-title');
+      const subtitle = document.getElementById('subtitle');
+      
+      if (mainTitle) {
+        mainTitle.textContent = newConfig.main_title || defaultConfig.main_title;
+      }
+      if (subtitle) {
+        subtitle.textContent = newConfig.subtitle || defaultConfig.subtitle;
+      }
+
+      // Redraw all canvases with new colors
+      drawCircleWithSector('materiCanvas', 30, 90, 'Juring AOB');
+      drawCircleWithSector('contoh1Canvas', 14, 90, 'Contoh 1');
+      drawCircleWithSector('contoh2Canvas', 10, 72, 'Contoh 2');
+      drawCircleWithSector('latihan1Canvas', 21, 120, 'Latihan 1');
+      drawCircleWithSector('latihan2Canvas', 15, 60, 'Latihan 2');
+      drawCircleWithSector('latihan3Canvas', 28, 45, 'Latihan 3');
+    }
+
+    // Variables for custom problems
+    let currentCustomProblem = null;
+    let currentRandomProblem = null;
+
+    // Step-by-step exercise functions
+    function checkStep(stepNumber) {
+      const resultBox = document.getElementById(`result_step${stepNumber}`);
+      let isCorrect = false;
+
+      switch(stepNumber) {
+        case 1:
+          const r = parseInt(document.getElementById('step1_r').value);
+          const theta = parseInt(document.getElementById('step1_theta').value);
+          const pi = document.getElementById('step1_pi').value;
+          
+          if (r === 35 && theta === 72 && pi === '22/7') {
+            isCorrect = true;
+            resultBox.className = 'result-box correct';
+            resultBox.textContent = '✅ Benar! r = 35 cm, θ = 72°, π = 22/7 (karena 35 adalah kelipatan 7)';
+            document.getElementById('step2_container').style.display = 'block';
+          } else {
+            resultBox.className = 'result-box incorrect';
+            let message = '❌ ';
+            if (r !== 35) message += 'Jari-jari seharusnya 35 cm. ';
+            if (theta !== 72) message += 'Sudut pusat seharusnya 72°. ';
+            if (pi !== '22/7') message += 'Gunakan π = 22/7 karena 35 adalah kelipatan 7.';
+            resultBox.textContent = message;
+          }
+          break;
+
+        case 2:
+          const substitution = document.getElementById('step2_substitution').value.toLowerCase().replace(/\s/g, '');
+          const correct2 = ['72/360×2×22/7×35', '(72/360)×2×(22/7)×35', '72/360×2×22/7×35'];
+          
+          if (correct2.some(c => substitution.includes(c.replace(/\s/g, '')))) {
+            isCorrect = true;
+            resultBox.className = 'result-box correct';
+            resultBox.textContent = '✅ Benar! Substitusi sudah tepat.';
+            document.getElementById('step3_container').style.display = 'block';
+          } else {
+            resultBox.className = 'result-box incorrect';
+            resultBox.textContent = '❌ Belum tepat. Substitusi yang benar: 72/360 × 2 × 22/7 × 35';
+          }
+          break;
+
+        case 3:
+          const angle = document.getElementById('step3_angle').value.replace(/\s/g, '');
+          
+          if (angle === '1/5' || angle === '0.2') {
+            isCorrect = true;
+            resultBox.className = 'result-box correct';
+            resultBox.textContent = '✅ Benar! 72/360 = 1/5';
+            document.getElementById('step4_container').style.display = 'block';
+          } else {
+            resultBox.className = 'result-box incorrect';
+            resultBox.textContent = '❌ Belum tepat. 72 ÷ 360 = 1/5 (bagi keduanya dengan 72)';
+          }
+          break;
+
+        case 4:
+          const denominator = parseInt(document.getElementById('step4_denominator').value);
+          
+          if (denominator === 35) {
+            isCorrect = true;
+            resultBox.className = 'result-box correct';
+            resultBox.textContent = '✅ Benar! 5 × 7 = 35';
+            document.getElementById('step5_container').style.display = 'block';
+          } else {
+            resultBox.className = 'result-box incorrect';
+            resultBox.textContent = '❌ Belum tepat. 5 × 7 = 35';
+          }
+          break;
+
+        case 5:
+          const simplify = document.getElementById('step5_simplify').value.replace(/\s/g, '');
+          
+          if (simplify === '7,5' || simplify === '5,7' || simplify === '7dan5' || simplify === '5dan7') {
+            isCorrect = true;
+            resultBox.className = 'result-box correct';
+            resultBox.textContent = '✅ Benar! 35 ÷ 5 = 7 dan 35 ÷ 7 = 5. Jadi hasilnya 2 × 22 = 44';
+            document.getElementById('step6_container').style.display = 'block';
+          } else {
+            resultBox.className = 'result-box incorrect';
+            resultBox.textContent = '❌ Belum tepat. Coret 35 dengan 5 (35÷5=7) dan dengan 7 (35÷7=5)';
+          }
+          break;
+
+        case 6:
+          const final = parseInt(document.getElementById('step6_final').value);
+          
+          if (final === 44) {
+            isCorrect = true;
+            resultBox.className = 'result-box correct';
+            resultBox.textContent = '✅ Benar! 2 × 22 = 44 cm';
+            document.getElementById('completion_message').style.display = 'block';
+          } else {
+            resultBox.className = 'result-box incorrect';
+            resultBox.textContent = '❌ Belum tepat. 2 × 22 = 44 cm';
+          }
+          break;
+      }
+    }
+
+    // Custom problem functions
+    function generateCustomProblem() {
+      const r = parseInt(document.getElementById('custom_r').value);
+      const theta = parseInt(document.getElementById('custom_theta').value);
+
+      if (!r || !theta || r < 1 || r > 100 || theta < 1 || theta > 360) {
+        const customResult = document.getElementById('custom_result');
+        customResult.className = 'result-box incorrect';
+        customResult.textContent = 'Silakan masukkan nilai yang valid!\nJari-jari: 1-100 cm\nSudut: 1-360°';
+        customResult.style.display = 'block';
+        return;
+      }
+
+      currentCustomProblem = { r, theta };
+      
+      document.getElementById('custom_question').textContent = 
+        `Soal Custom: Hitunglah luas juring lingkaran dengan jari-jari ${r} cm dan sudut pusat ${theta}°!`;
+      
+      drawCircleWithSector('customCanvas', r, theta, 'Custom');
+      document.getElementById('custom_problem').style.display = 'block';
+      document.getElementById('custom_answer').value = '';
+      document.getElementById('custom_result').style.display = 'none';
+      document.getElementById('custom_solution').style.display = 'none';
+    }
+
+    function checkCustomAnswer() {
+      if (!currentCustomProblem) return;
+
+      const userAnswer = parseFloat(document.getElementById('custom_answer').value);
+      const correctAnswer = calculateSectorArea(currentCustomProblem.r, currentCustomProblem.theta);
+      const resultBox = document.getElementById('custom_result');
+
+      if (isNaN(userAnswer)) {
+        resultBox.className = 'result-box incorrect';
+        resultBox.textContent = '❌ Silakan masukkan jawaban Anda terlebih dahulu!';
+        return;
+      }
+
+      const tolerance = Math.max(0.5, correctAnswer * 0.01);
+      if (Math.abs(userAnswer - correctAnswer) < tolerance) {
+        resultBox.className = 'result-box correct';
+        resultBox.textContent = `✅ Benar! Jawaban Anda ${userAnswer} cm² sudah tepat!`;
+      } else {
+        resultBox.className = 'result-box incorrect';
+        resultBox.textContent = `❌ Belum tepat. Coba periksa kembali perhitungan Anda.`;
+      }
+    }
+
+    function showCustomSolution() {
+      if (!currentCustomProblem) return;
+
+      const solution = generateSolution(currentCustomProblem.r, currentCustomProblem.theta);
+      document.getElementById('custom_solution').innerHTML = '<h4>Kunci Jawaban Lengkap:</h4>' + solution;
+      document.getElementById('custom_solution').style.display = 'block';
+    }
+
+    // Random problem functions
+    function generateRandomProblem() {
+      const radiusOptions = [7, 14, 21, 28, 35, 42, 10, 12, 15, 18, 20, 25];
+      const angleOptions = [30, 45, 60, 72, 90, 120, 135, 150, 180, 240, 270];
+      
+      const r = radiusOptions[Math.floor(Math.random() * radiusOptions.length)];
+      const theta = angleOptions[Math.floor(Math.random() * angleOptions.length)];
+
+      currentRandomProblem = { r, theta };
+      
+      document.getElementById('random_question').textContent = 
+        `Soal Acak: Hitunglah luas juring lingkaran dengan jari-jari ${r} cm dan sudut pusat ${theta}°!`;
+      
+      drawCircleWithSector('randomCanvas', r, theta, 'Random');
+      document.getElementById('random_problem').style.display = 'block';
+      document.getElementById('random_answer').value = '';
+      document.getElementById('random_result').style.display = 'none';
+      document.getElementById('random_solution').style.display = 'none';
+    }
+
+    function checkRandomAnswer() {
+      if (!currentRandomProblem) return;
+
+      const userAnswer = parseFloat(document.getElementById('random_answer').value);
+      const correctAnswer = calculateSectorArea(currentRandomProblem.r, currentRandomProblem.theta);
+      const resultBox = document.getElementById('random_result');
+
+      if (isNaN(userAnswer)) {
+        resultBox.className = 'result-box incorrect';
+        resultBox.textContent = '❌ Silakan masukkan jawaban Anda terlebih dahulu!';
+        return;
+      }
+
+      const tolerance = Math.max(0.5, correctAnswer * 0.01);
+      if (Math.abs(userAnswer - correctAnswer) < tolerance) {
+        resultBox.className = 'result-box correct';
+        resultBox.textContent = `✅ Benar! Jawaban Anda ${userAnswer} cm² sudah tepat!`;
+      } else {
+        resultBox.className = 'result-box incorrect';
+        resultBox.textContent = `❌ Belum tepat. Coba periksa kembali perhitungan Anda.`;
+      }
+    }
+
+    function showRandomSolution() {
+      if (!currentRandomProblem) return;
+
+      const solution = generateSolution(currentRandomProblem.r, currentRandomProblem.theta);
+      document.getElementById('random_solution').innerHTML = '<h4>Kunci Jawaban Lengkap:</h4>' + solution;
+      document.getElementById('random_solution').style.display = 'block';
+    }
+
+    // Helper functions
+    function calculateSectorArea(r, theta) {
+      const pi = (r % 7 === 0) ? 22/7 : 3.14;
+      return (theta / 360) * pi * r * r;
+    }
+
+    function generateSolution(r, theta) {
+      const isMultipleOf7 = r % 7 === 0;
+      const pi = isMultipleOf7 ? '22/7' : '3,14';
+      const piValue = isMultipleOf7 ? 22/7 : 3.14;
+      const rSquared = r * r;
+      const simplifiedAngle = simplifyFraction(theta, 360);
+      const finalAnswer = calculateSectorArea(r, theta);
+      
+      // Format hasil: hilangkan .00 jika bilangan bulat
+      const formattedAnswer = finalAnswer % 1 === 0 ? finalAnswer.toString() : finalAnswer.toFixed(2);
+
+      let solution = `
+        <div class="step">
+          <span class="step-number">1</span>
+          <strong>Identifikasi yang diketahui:</strong>
+          <p>r = ${r} cm ${isMultipleOf7 ? '(kelipatan 7, maka π = 22/7)' : '(bukan kelipatan 7, maka π = 3,14)'}</p>
+          <p>θ = ${theta}°</p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">2</span>
+          <strong>Gunakan rumus:</strong>
+          <p>Luas Juring = <span class="fraction"><span class="fraction-numerator">θ</span><span class="fraction-denominator">360°</span></span> × π × r²</p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">3</span>
+          <strong>Substitusi nilai:</strong>
+          <p>Luas Juring = <span class="fraction"><span class="fraction-numerator">${theta}°</span><span class="fraction-denominator">360°</span></span> × ${pi} × ${r}²</p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">4</span>
+          <strong>Sederhanakan sudut:</strong>
+          <p><span class="fraction"><span class="fraction-numerator">${theta}</span><span class="fraction-denominator">360</span></span> = <span class="fraction"><span class="fraction-numerator">${simplifiedAngle.num}</span><span class="fraction-denominator">${simplifiedAngle.den}</span></span></p>
+        </div>
+
+        <div class="step">
+          <span class="step-number">5</span>
+          <strong>Hitung r²:</strong>
+          <p>${r}² = ${r} × ${r} = ${rSquared}</p>
+        </div>
+      `;
+
+      if (isMultipleOf7) {
+        const rSquaredDiv7 = rSquared / 7;
+        solution += `
+          <div class="step">
+            <span class="step-number">6</span>
+            <strong>Sederhanakan ${rSquared}/7:</strong>
+            <p>Luas Juring = <span class="fraction"><span class="fraction-numerator">${simplifiedAngle.num}</span><span class="fraction-denominator">${simplifiedAngle.den}</span></span> × <span class="fraction"><span class="fraction-numerator">22</span><span class="fraction-denominator">7</span></span> × ${rSquared}</p>
+            <p>Karena ${rSquared} ÷ 7 = ${rSquaredDiv7}, maka:</p>
+            <p>Luas Juring = <span class="fraction"><span class="fraction-numerator">${simplifiedAngle.num}</span><span class="fraction-denominator">${simplifiedAngle.den}</span></span> × 22 × ${rSquaredDiv7}</p>
+          </div>
+        `;
+      }
+
+      solution += `
+        <div class="step">
+          <span class="step-number">${isMultipleOf7 ? '7' : '6'}</span>
+          <strong>Hitung hasil akhir:</strong>
+          <p>Luas Juring = ${formattedAnswer} cm²</p>
+        </div>
+
+        <div class="result-box correct">
+          ✅ Jadi, luas juring lingkaran adalah <strong>${formattedAnswer} cm²</strong>
+        </div>
+      `;
+
+      return solution;
+    }
+
+    function simplifyFraction(num, den) {
+      const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+      const g = gcd(num, den);
+      return { num: num / g, den: den / g };
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      drawCircleWithSector('materiCanvas', 30, 90, 'Juring AOB');
+      drawCircleWithSector('contoh1Canvas', 14, 90, 'Contoh 1');
+      drawCircleWithSector('contoh2Canvas', 10, 72, 'Contoh 2');
+      drawCircleWithSector('latihan1Canvas', 21, 120, 'Latihan 1');
+      drawCircleWithSector('latihan2Canvas', 15, 60, 'Latihan 2');
+      drawCircleWithSector('latihan3Canvas', 28, 45, 'Latihan 3');
+      drawCircleWithSector('mandiriCanvas', 35, 72, 'Mandiri');
+    });
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["main_title", config.main_title || defaultConfig.main_title],
+          ["subtitle", config.subtitle || defaultConfig.subtitle]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9983ac8161a4e416',t:'MTc2MjA4Njk0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

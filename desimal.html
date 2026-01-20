@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operasi Desimal Bersusun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .decimal-line {
+            border-bottom: 2px solid #374151;
+            margin: 8px 0;
+        }
+        .plus-sign {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #059669;
+        }
+        .digit-box {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #d1d5db;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: #fef3c7;
+            border-color: #f59e0b;
+        }
+        .correct {
+            background-color: #d1fae5;
+            border-color: #10b981;
+        }
+        .incorrect {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-indigo-800 mb-2">📚 Operasi Desimal Bersusun</h1>
+            <p class="text-lg text-gray-600">Pelajari cara menjumlahkan dan mengurangkan bilangan desimal dengan mudah!</p>
+        </div>
+
+        <!-- Materi Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-indigo-700 mb-4">📖 Materi Pembelajaran</h2>
+            
+            <!-- Tab Navigation -->
+            <div class="flex mb-6 bg-gray-100 rounded-lg p-1">
+                <button onclick="showMaterial('addition')" id="additionTab" class="flex-1 py-2 px-4 rounded-md font-semibold transition-colors bg-indigo-600 text-white">
+                    ➕ Penjumlahan
+                </button>
+                <button onclick="showMaterial('subtraction')" id="subtractionTab" class="flex-1 py-2 px-4 rounded-md font-semibold transition-colors text-gray-600 hover:text-indigo-600">
+                    ➖ Pengurangan
+                </button>
+            </div>
+
+            <!-- Addition Material -->
+            <div id="additionMaterial" class="grid md:grid-cols-2 gap-6">
+                <!-- Langkah-langkah Penjumlahan -->
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">🔢 Langkah-langkah Penjumlahan:</h3>
+                    <ol class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 mt-0.5">1</span>
+                            <span>Susun bilangan dengan tanda desimal sejajar</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 mt-0.5">2</span>
+                            <span>Jumlahkan dari kanan ke kiri</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 mt-0.5">3</span>
+                            <span>Letakkan tanda desimal pada hasil</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 mt-0.5">4</span>
+                            <span>Jangan lupa menyimpan jika ada</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Contoh Penjumlahan -->
+                <div class="bg-green-50 rounded-lg p-4">
+                    <h3 class="text-xl font-semibold text-green-800 mb-3">✨ Contoh Penjumlahan:</h3>
+                    <div class="bg-white rounded-lg p-4 font-mono text-center">
+                        <div class="text-lg">
+                            <div class="relative inline-block">
+                                <div class="text-right mb-2" style="width: 120px;">12,45</div>
+                                <div class="relative mb-2">
+                                    <div class="text-right" style="width: 120px;">8,37</div>
+                                    <div class="absolute right-0 top-0" style="right: -20px;">+</div>
+                                </div>
+                                <div class="decimal-line" style="width: 120px;"></div>
+                                <div class="text-right text-green-600 font-bold" style="width: 120px;">20,82</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">Perhatikan: tanda desimal tetap sejajar!</p>
+                </div>
+            </div>
+
+            <!-- Subtraction Material -->
+            <div id="subtractionMaterial" class="hidden grid md:grid-cols-2 gap-6">
+                <!-- Langkah-langkah Pengurangan -->
+                <div class="bg-red-50 rounded-lg p-4">
+                    <h3 class="text-xl font-semibold text-red-800 mb-3">🔢 Langkah-langkah Pengurangan:</h3>
+                    <ol class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 mt-0.5">1</span>
+                            <span>Susun bilangan dengan tanda desimal sejajar</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 mt-0.5">2</span>
+                            <span>Kurangkan dari kanan ke kiri</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 mt-0.5">3</span>
+                            <span>Pinjam dari tempat nilai di sebelah kiri jika perlu</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 mt-0.5">4</span>
+                            <span>Letakkan tanda desimal pada hasil</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Contoh Pengurangan -->
+                <div class="bg-orange-50 rounded-lg p-4">
+                    <h3 class="text-xl font-semibold text-orange-800 mb-3">✨ Contoh Pengurangan:</h3>
+                    <div class="bg-white rounded-lg p-4 font-mono text-center">
+                        <div class="text-lg">
+                            <div class="relative inline-block">
+                                <div class="text-right mb-2" style="width: 120px;">15,73</div>
+                                <div class="relative mb-2">
+                                    <div class="text-right" style="width: 120px;">8,46</div>
+                                    <div class="absolute right-0 top-0" style="right: -20px;">-</div>
+                                </div>
+                                <div class="decimal-line" style="width: 120px;"></div>
+                                <div class="text-right text-orange-600 font-bold" style="width: 120px;">7,27</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">Perhatikan: bilangan yang lebih besar di atas!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latihan Soal -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-indigo-700">🎯 Latihan Soal</h2>
+                <div class="flex gap-2">
+                    <select id="operationSelect" onchange="generateNewProblem()" class="bg-gray-100 border border-gray-300 rounded-lg px-3 py-2 font-semibold">
+                        <option value="addition">➕ Penjumlahan (2 bilangan)</option>
+                        <option value="subtraction">➖ Pengurangan (2 bilangan)</option>
+                        <option value="addition3">➕ Penjumlahan (3 bilangan)</option>
+                        <option value="subtraction3">➖ Pengurangan (3 bilangan)</option>
+                        <option value="mixed">🔀 Campuran (2 bilangan)</option>
+                        <option value="mixed3">🔀 Campuran (3 bilangan)</option>
+                        <option value="realMixed3">🎯 Campuran Nyata (3 bilangan)</option>
+                        <option value="story">📖 Soal Cerita</option>
+                    </select>
+                    <button onclick="generateNewProblem()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+                        🔄 Soal Baru
+                    </button>
+                    <button onclick="showHint()" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+                        💡 Petunjuk
+                    </button>
+                </div>
+            </div>
+
+            <!-- Problem Display -->
+            <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                <div class="text-center">
+                    <!-- Story Problem Display -->
+                    <div id="storyDisplay" class="hidden bg-blue-50 rounded-lg p-4 mb-4 text-left">
+                        <h4 class="text-lg font-semibold text-blue-800 mb-2">📖 Soal Cerita:</h4>
+                        <div id="storyText" class="text-gray-700 mb-4">
+                            <!-- Story text will be generated here -->
+                        </div>
+                        <div class="bg-white rounded-lg p-3">
+                            <strong class="text-blue-700">Pertanyaan:</strong>
+                            <div id="storyQuestion" class="text-gray-700 mt-1">
+                                <!-- Question will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="problemDisplay" class="font-mono text-2xl mb-4">
+                        <!-- Problem will be generated here -->
+                    </div>
+                    
+                    <!-- Answer Input -->
+                    <div class="mt-6">
+                        <label class="block text-lg font-semibold text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="answerInput" placeholder="Masukkan jawaban (contoh: 12,45)" 
+                               class="text-xl text-center border-2 border-gray-300 rounded-lg px-4 py-2 w-48 focus:border-indigo-500 focus:outline-none">
+                        <div class="mt-4">
+                            <button onclick="checkAnswer()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors mr-2">
+                                ✓ Periksa
+                            </button>
+                            <button onclick="showSolution()" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                                👁️ Lihat Penyelesaian
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Area -->
+            <div id="feedbackArea" class="hidden mb-6">
+                <!-- Feedback will appear here -->
+            </div>
+
+            <!-- Solution Area -->
+            <div id="solutionArea" class="hidden bg-blue-50 rounded-lg p-6">
+                <h3 class="text-xl font-semibold text-blue-800 mb-4">📝 Penyelesaian Langkah demi Langkah:</h3>
+                <div id="solutionSteps" class="font-mono text-lg">
+                    <!-- Solution steps will appear here -->
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4 mt-6">
+                <h3 class="text-lg font-semibold text-purple-800 mb-2">📊 Statistik Anda:</h3>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                        <div class="text-2xl font-bold text-green-600" id="correctCount">0</div>
+                        <div class="text-sm text-gray-600">Benar</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-red-600" id="incorrectCount">0</div>
+                        <div class="text-sm text-gray-600">Salah</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-blue-600" id="totalCount">0</div>
+                        <div class="text-sm text-gray-600">Total</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentProblem = {};
+        let stats = { correct: 0, incorrect: 0, total: 0 };
+
+        function showMaterial(type) {
+            const additionTab = document.getElementById('additionTab');
+            const subtractionTab = document.getElementById('subtractionTab');
+            const additionMaterial = document.getElementById('additionMaterial');
+            const subtractionMaterial = document.getElementById('subtractionMaterial');
+
+            if (type === 'addition') {
+                additionTab.className = 'flex-1 py-2 px-4 rounded-md font-semibold transition-colors bg-indigo-600 text-white';
+                subtractionTab.className = 'flex-1 py-2 px-4 rounded-md font-semibold transition-colors text-gray-600 hover:text-indigo-600';
+                additionMaterial.classList.remove('hidden');
+                subtractionMaterial.classList.add('hidden');
+            } else {
+                subtractionTab.className = 'flex-1 py-2 px-4 rounded-md font-semibold transition-colors bg-indigo-600 text-white';
+                additionTab.className = 'flex-1 py-2 px-4 rounded-md font-semibold transition-colors text-gray-600 hover:text-indigo-600';
+                subtractionMaterial.classList.remove('hidden');
+                additionMaterial.classList.add('hidden');
+            }
+        }
+
+        function generateRandomDecimal(minWhole, maxWhole, decimalPlaces) {
+            const whole = Math.floor(Math.random() * (maxWhole - minWhole + 1)) + minWhole;
+            const decimal = Math.floor(Math.random() * Math.pow(10, decimalPlaces));
+            return parseFloat(whole + '.' + decimal.toString().padStart(decimalPlaces, '0'));
+        }
+
+        function generateNewProblem() {
+            const operationType = document.getElementById('operationSelect').value;
+            let operation = operationType;
+            
+            // Hide story display by default
+            document.getElementById('storyDisplay').classList.add('hidden');
+            
+            // If mixed, randomly choose operation
+            if (operationType === 'mixed') {
+                operation = Math.random() < 0.5 ? 'addition' : 'subtraction';
+            } else if (operationType === 'mixed3') {
+                operation = Math.random() < 0.5 ? 'addition3' : 'subtraction3';
+            } else if (operationType === 'realMixed3') {
+                operation = 'realMixed3';
+            }
+
+            if (operationType === 'story') {
+                generateStoryProblem();
+                return;
+            }
+
+            // Generate numbers based on operation type
+            let numbers = [];
+            if (operationType === 'addition3' || operation === 'addition3') {
+                // Generate three numbers for addition
+                numbers = [
+                    generateRandomDecimal(1, 50, 2),
+                    generateRandomDecimal(1, 50, 2),
+                    generateRandomDecimal(1, 50, 2)
+                ];
+                operation = 'addition3';
+            } else if (operationType === 'realMixed3' || operation === 'realMixed3') {
+                // Generate three numbers for real mixed operations (+ and -)
+                // Randomly choose operation pattern: either + then - or - then +
+                const operationPattern = Math.random() < 0.5 ? 'add_subtract' : 'subtract_add';
+                
+                let num1, num2, num3;
+                
+                if (operationPattern === 'add_subtract') {
+                    // Pattern: num1 + num2 - num3
+                    num1 = generateRandomDecimal(30, 80, 2);
+                    num2 = generateRandomDecimal(5, 25, 2);
+                    num3 = generateRandomDecimal(5, 20, 2);
+                    
+                    // Ensure the result is positive: num1 + num2 - num3 > 0
+                    while ((num1 + num2 - num3) <= 0) {
+                        num1 = generateRandomDecimal(30, 80, 2);
+                        num2 = generateRandomDecimal(5, 25, 2);
+                        num3 = generateRandomDecimal(5, 20, 2);
+                    }
+                } else {
+                    // Pattern: num1 - num2 + num3
+                    num1 = generateRandomDecimal(50, 99, 2);
+                    num2 = generateRandomDecimal(10, 30, 2);
+                    num3 = generateRandomDecimal(5, 25, 2);
+                    
+                    // Ensure the result is positive: num1 - num2 + num3 > 0
+                    while ((num1 - num2 + num3) <= 0) {
+                        num1 = generateRandomDecimal(50, 99, 2);
+                        num2 = generateRandomDecimal(10, 30, 2);
+                        num3 = generateRandomDecimal(5, 25, 2);
+                    }
+                }
+                
+                numbers = [num1, num2, num3];
+                operation = 'realMixed3';
+                currentProblem.operationPattern = operationPattern;
+            } else if (operationType === 'subtraction3' || operation === 'subtraction3') {
+                // Generate three numbers for subtraction
+                let num1 = generateRandomDecimal(50, 99, 2);
+                let num2 = generateRandomDecimal(5, 30, 2);
+                let num3 = generateRandomDecimal(5, 20, 2);
+                
+                // Ensure num1 > (num2 + num3) to avoid negative results
+                while (num1 <= (num2 + num3)) {
+                    num1 = generateRandomDecimal(50, 99, 2);
+                    num2 = generateRandomDecimal(5, 30, 2);
+                    num3 = generateRandomDecimal(5, 20, 2);
+                }
+                
+                numbers = [num1, num2, num3];
+                operation = 'subtraction3';
+            } else {
+                // Generate two numbers
+                let num1 = generateRandomDecimal(1, 99, 2);
+                let num2 = generateRandomDecimal(1, 99, 2);
+                
+                // For subtraction, ensure num1 > num2 to avoid negative results
+                if (operation === 'subtraction' && num1 < num2) {
+                    [num1, num2] = [num2, num1];
+                }
+                numbers = [num1, num2];
+            }
+            
+            // Calculate answer
+            let answer;
+            if (operation === 'addition3') {
+                answer = parseFloat((numbers[0] + numbers[1] + numbers[2]).toFixed(2));
+            } else if (operation === 'subtraction3') {
+                answer = parseFloat((numbers[0] - numbers[1] - numbers[2]).toFixed(2));
+            } else if (operation === 'realMixed3') {
+                if (currentProblem.operationPattern === 'add_subtract') {
+                    answer = parseFloat((numbers[0] + numbers[1] - numbers[2]).toFixed(2));
+                } else {
+                    answer = parseFloat((numbers[0] - numbers[1] + numbers[2]).toFixed(2));
+                }
+            } else if (operation === 'addition') {
+                answer = parseFloat((numbers[0] + numbers[1]).toFixed(2));
+            } else {
+                answer = parseFloat((numbers[0] - numbers[1]).toFixed(2));
+            }
+            
+            currentProblem = {
+                numbers: numbers,
+                answer: answer,
+                operation: operation
+            };
+
+            // Display the problem
+            displayMathProblem(numbers, operation);
+
+            // Clear previous inputs and feedback
+            document.getElementById('answerInput').value = '';
+            document.getElementById('feedbackArea').classList.add('hidden');
+            document.getElementById('solutionArea').classList.add('hidden');
+            document.getElementById('answerInput').className = 'text-xl text-center border-2 border-gray-300 rounded-lg px-4 py-2 w-48 focus:border-indigo-500 focus:outline-none';
+        }
+
+        function displayMathProblem(numbers, operation) {
+            const problemDisplay = document.getElementById('problemDisplay');
+            
+            if (operation === 'realMixed3') {
+                // Display three numbers with mixed operations in horizontal format
+                const num1Str = numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = numbers[1].toFixed(2).replace('.', ',');
+                const num3Str = numbers[2].toFixed(2).replace('.', ',');
+                
+                let operationString;
+                if (currentProblem.operationPattern === 'add_subtract') {
+                    operationString = `${num1Str} + ${num2Str} - ${num3Str} = ?`;
+                } else {
+                    operationString = `${num1Str} - ${num2Str} + ${num3Str} = ?`;
+                }
+                
+                problemDisplay.innerHTML = `
+                    <div class="bg-blue-50 rounded-lg p-6 mb-4">
+                        <div class="text-3xl font-bold text-center text-blue-800 mb-2">
+                            ${operationString}
+                        </div>
+                        <div class="text-center text-gray-600 text-sm">
+                            Hitung operasi campuran dari kiri ke kanan
+                        </div>
+                    </div>
+                `;
+            } else if (operation === 'addition3' || operation === 'subtraction3') {
+                // Display three numbers for addition or subtraction
+                const num1Str = numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = numbers[1].toFixed(2).replace('.', ',');
+                const num3Str = numbers[2].toFixed(2).replace('.', ',');
+                const operatorSymbol = operation === 'addition3' ? '+' : '-';
+                
+                problemDisplay.innerHTML = `
+                    <div class="relative inline-block">
+                        <div class="text-right mb-2" style="width: 120px;">${num1Str}</div>
+                        <div class="text-right mb-2" style="width: 120px;">${num2Str}</div>
+                        <div class="relative mb-2">
+                            <div class="text-right" style="width: 120px;">${num3Str}</div>
+                            <div class="absolute right-0 top-0" style="right: -20px;">${operatorSymbol}</div>
+                        </div>
+                        <div class="decimal-line" style="width: 120px;"></div>
+                        <div class="text-right text-gray-400" style="width: 120px;">?</div>
+                    </div>
+                `;
+            } else {
+                // Display two numbers
+                const operatorSymbol = operation === 'addition' ? '+' : '-';
+                const num1Str = numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = numbers[1].toFixed(2).replace('.', ',');
+                
+                problemDisplay.innerHTML = `
+                    <div class="relative inline-block">
+                        <div class="text-right mb-2" style="width: 120px;">${num1Str}</div>
+                        <div class="relative mb-2">
+                            <div class="text-right" style="width: 120px;">${num2Str}</div>
+                            <div class="absolute right-0 top-0" style="right: -20px;">${operatorSymbol}</div>
+                        </div>
+                        <div class="decimal-line" style="width: 120px;"></div>
+                        <div class="text-right text-gray-400" style="width: 120px;">?</div>
+                    </div>
+                `;
+            }
+        }
+
+        function generateStoryProblem() {
+            // Show story display
+            document.getElementById('storyDisplay').classList.remove('hidden');
+            
+            const storyTemplates = [
+                {
+                    type: 'addition',
+                    story: 'Ibu pergi ke pasar untuk berbelanja. Ibu membeli {item1} seharga Rp{num1} dan {item2} seharga Rp{num2}.',
+                    question: 'Berapa total uang yang dikeluarkan ibu?',
+                    items: [
+                        ['sayuran', 'daging'],
+                        ['beras', 'minyak goreng'],
+                        ['buah-buahan', 'telur'],
+                        ['ikan', 'bumbu dapur']
+                    ]
+                },
+                {
+                    type: 'subtraction',
+                    story: 'Ayah memiliki uang sebesar Rp{num1}. Ayah menggunakan Rp{num2} untuk membeli {item1}.',
+                    question: 'Berapa sisa uang ayah sekarang?',
+                    items: [
+                        ['bensin'],
+                        ['obat'],
+                        ['alat tulis'],
+                        ['makanan']
+                    ]
+                },
+                {
+                    type: 'addition3',
+                    story: 'Sari mengumpulkan uang jajan selama 3 hari. Hari pertama Rp{num1}, hari kedua Rp{num2}, dan hari ketiga Rp{num3}.',
+                    question: 'Berapa total uang jajan yang dikumpulkan Sari?',
+                    items: [[]]
+                },
+                {
+                    type: 'subtraction3',
+                    story: 'Pak Budi memiliki uang Rp{num1}. Hari ini dia mengeluarkan Rp{num2} untuk belanja dan Rp{num3} untuk bayar listrik.',
+                    question: 'Berapa sisa uang Pak Budi sekarang?',
+                    items: [[]]
+                },
+                {
+                    type: 'addition',
+                    story: 'Dalam perlombaan lari, Andi menempuh jarak {num1} km pada babak pertama dan {num2} km pada babak kedua.',
+                    question: 'Berapa total jarak yang ditempuh Andi?',
+                    items: [[]]
+                },
+                {
+                    type: 'subtraction',
+                    story: 'Sebuah tangki air berisi {num1} liter air. Kemudian digunakan {num2} liter untuk menyiram tanaman.',
+                    question: 'Berapa liter air yang tersisa di tangki?',
+                    items: [[]]
+                },
+                {
+                    type: 'subtraction3',
+                    story: 'Ibu memiliki pita sepanjang {num1} meter. Digunakan {num2} meter untuk membungkus kado dan {num3} meter untuk hiasan.',
+                    question: 'Berapa meter pita yang tersisa?',
+                    items: [[]]
+                },
+                {
+                    type: 'addition3',
+                    story: 'Toko buah menjual jeruk hari ini. Pagi terjual {num1} kg, siang {num2} kg, dan sore {num3} kg.',
+                    question: 'Berapa total jeruk yang terjual hari ini?',
+                    items: [[]]
+                },
+                {
+                    type: 'realMixed3',
+                    pattern: 'add_subtract',
+                    story: 'Ani memiliki uang Rp{num1}. Dia mendapat tambahan uang jajan Rp{num2}, tetapi harus membayar hutang Rp{num3}.',
+                    question: 'Berapa uang Ani sekarang?',
+                    items: [[]]
+                },
+                {
+                    type: 'realMixed3',
+                    pattern: 'add_subtract',
+                    story: 'Sebuah tangki berisi {num1} liter air. Ditambah {num2} liter air baru, kemudian digunakan {num3} liter untuk menyiram.',
+                    question: 'Berapa liter air yang tersisa di tangki?',
+                    items: [[]]
+                },
+                {
+                    type: 'realMixed3',
+                    pattern: 'subtract_add',
+                    story: 'Pak Tono memiliki {num1} kg beras. Dia menjual {num2} kg ke tetangga, lalu membeli lagi {num3} kg dari pasar.',
+                    question: 'Berapa kg beras Pak Tono sekarang?',
+                    items: [[]]
+                },
+                {
+                    type: 'realMixed3',
+                    pattern: 'subtract_add',
+                    story: 'Saldo rekening Ibu {num1} ribu rupiah. Ibu transfer {num2} ribu untuk bayar tagihan, kemudian dapat kiriman {num3} ribu.',
+                    question: 'Berapa saldo rekening Ibu sekarang?',
+                    items: [[]]
+                }
+            ];
+            
+            const template = storyTemplates[Math.floor(Math.random() * storyTemplates.length)];
+            let numbers = [];
+            
+            if (template.type === 'addition3') {
+                numbers = [
+                    generateRandomDecimal(5, 25, 2),
+                    generateRandomDecimal(5, 25, 2),
+                    generateRandomDecimal(5, 25, 2)
+                ];
+            } else if (template.type === 'realMixed3') {
+                let num1, num2, num3;
+                
+                if (template.pattern === 'add_subtract') {
+                    // Pattern: num1 + num2 - num3
+                    num1 = generateRandomDecimal(30, 80, 2);
+                    num2 = generateRandomDecimal(5, 25, 2);
+                    num3 = generateRandomDecimal(5, 20, 2);
+                    
+                    // Ensure the result is positive: num1 + num2 - num3 > 0
+                    while ((num1 + num2 - num3) <= 0) {
+                        num1 = generateRandomDecimal(30, 80, 2);
+                        num2 = generateRandomDecimal(5, 25, 2);
+                        num3 = generateRandomDecimal(5, 20, 2);
+                    }
+                } else {
+                    // Pattern: num1 - num2 + num3
+                    num1 = generateRandomDecimal(50, 99, 2);
+                    num2 = generateRandomDecimal(10, 30, 2);
+                    num3 = generateRandomDecimal(5, 25, 2);
+                    
+                    // Ensure the result is positive: num1 - num2 + num3 > 0
+                    while ((num1 - num2 + num3) <= 0) {
+                        num1 = generateRandomDecimal(50, 99, 2);
+                        num2 = generateRandomDecimal(10, 30, 2);
+                        num3 = generateRandomDecimal(5, 25, 2);
+                    }
+                }
+                
+                numbers = [num1, num2, num3];
+                currentProblem.operationPattern = template.pattern;
+            } else if (template.type === 'subtraction3') {
+                let num1 = generateRandomDecimal(50, 99, 2);
+                let num2 = generateRandomDecimal(5, 30, 2);
+                let num3 = generateRandomDecimal(5, 20, 2);
+                
+                // Ensure num1 > (num2 + num3) to avoid negative results
+                while (num1 <= (num2 + num3)) {
+                    num1 = generateRandomDecimal(50, 99, 2);
+                    num2 = generateRandomDecimal(5, 30, 2);
+                    num3 = generateRandomDecimal(5, 20, 2);
+                }
+                
+                numbers = [num1, num2, num3];
+            } else {
+                let num1 = generateRandomDecimal(10, 99, 2);
+                let num2 = generateRandomDecimal(5, 50, 2);
+                
+                if (template.type === 'subtraction' && num1 < num2) {
+                    [num1, num2] = [num2, num1];
+                }
+                numbers = [num1, num2];
+            }
+            
+            // Calculate answer
+            let answer;
+            if (template.type === 'addition3') {
+                answer = parseFloat((numbers[0] + numbers[1] + numbers[2]).toFixed(2));
+            } else if (template.type === 'subtraction3') {
+                answer = parseFloat((numbers[0] - numbers[1] - numbers[2]).toFixed(2));
+            } else if (template.type === 'realMixed3') {
+                if (template.pattern === 'add_subtract') {
+                    answer = parseFloat((numbers[0] + numbers[1] - numbers[2]).toFixed(2));
+                } else {
+                    answer = parseFloat((numbers[0] - numbers[1] + numbers[2]).toFixed(2));
+                }
+            } else if (template.type === 'addition') {
+                answer = parseFloat((numbers[0] + numbers[1]).toFixed(2));
+            } else {
+                answer = parseFloat((numbers[0] - numbers[1]).toFixed(2));
+            }
+            
+            // Format story text
+            let storyText = template.story;
+            const items = template.items[Math.floor(Math.random() * template.items.length)];
+            
+            storyText = storyText.replace('{num1}', numbers[0].toFixed(2).replace('.', ','));
+            storyText = storyText.replace('{num2}', numbers[1].toFixed(2).replace('.', ','));
+            if (numbers[2]) {
+                storyText = storyText.replace('{num3}', numbers[2].toFixed(2).replace('.', ','));
+            }
+            if (items[0]) {
+                storyText = storyText.replace('{item1}', items[0]);
+            }
+            if (items[1]) {
+                storyText = storyText.replace('{item2}', items[1]);
+            }
+            
+            // Display story
+            document.getElementById('storyText').innerHTML = storyText;
+            document.getElementById('storyQuestion').innerHTML = template.question;
+            
+            // Display math problem
+            displayMathProblem(numbers, template.type);
+            
+            currentProblem = {
+                numbers: numbers,
+                answer: answer,
+                operation: template.type,
+                story: storyText,
+                question: template.question
+            };
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answerInput').value;
+            const feedbackArea = document.getElementById('feedbackArea');
+            const answerInput = document.getElementById('answerInput');
+            
+            if (!userAnswer) {
+                alert('Silakan masukkan jawaban terlebih dahulu!');
+                return;
+            }
+
+            // Convert comma to dot for calculation
+            const userNum = parseFloat(userAnswer.replace(',', '.'));
+            const isCorrect = Math.abs(userNum - currentProblem.answer) < 0.01;
+            const correctAnswerFormatted = currentProblem.answer.toFixed(2).replace('.', ',');
+
+            feedbackArea.classList.remove('hidden');
+            
+            if (isCorrect) {
+                stats.correct++;
+                answerInput.className = 'text-xl text-center border-2 border-green-500 rounded-lg px-4 py-2 w-48 bg-green-50';
+                feedbackArea.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-2">🎉</span>
+                            <div>
+                                <strong>Benar!</strong> Jawaban Anda ${userAnswer} adalah tepat!
+                                <div class="text-sm mt-1">Bagus sekali! Anda memahami penjumlahan desimal dengan baik.</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                stats.incorrect++;
+                answerInput.className = 'text-xl text-center border-2 border-red-500 rounded-lg px-4 py-2 w-48 bg-red-50';
+                feedbackArea.innerHTML = `
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-2">❌</span>
+                            <div>
+                                <strong>Belum tepat.</strong> Jawaban yang benar adalah ${correctAnswerFormatted}
+                                <div class="text-sm mt-1">Jangan menyerah! Coba lihat penyelesaiannya untuk memahami langkah-langkahnya.</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            stats.total++;
+            updateStats();
+        }
+
+        function showSolution() {
+            const solutionArea = document.getElementById('solutionArea');
+            const solutionSteps = document.getElementById('solutionSteps');
+            
+            const answerStr = currentProblem.answer.toFixed(2).replace('.', ',');
+            
+            let solutionHTML = '<div class="bg-white rounded-lg p-4">';
+            
+            // Add story analysis if it's a story problem
+            if (currentProblem.story) {
+                solutionHTML += `
+                    <div class="mb-4 bg-blue-50 rounded-lg p-3">
+                        <strong>Analisis Soal Cerita:</strong>
+                        <div class="mt-2 text-sm text-gray-700">
+                            <div class="mb-2"><strong>Cerita:</strong> ${currentProblem.story}</div>
+                            <div class="mb-2"><strong>Pertanyaan:</strong> ${currentProblem.question}</div>
+                            <div><strong>Operasi yang diperlukan:</strong> ${currentProblem.operation === 'addition' ? 'Penjumlahan' : currentProblem.operation === 'addition3' ? 'Penjumlahan 3 bilangan' : currentProblem.operation === 'subtraction3' ? 'Pengurangan 3 bilangan' : currentProblem.operation === 'realMixed3' ? 'Operasi Campuran (+ dan -)' : 'Pengurangan'}</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            solutionHTML += `
+                <div class="mb-4">
+                    <strong>Langkah 1:</strong> Susun bilangan dengan tanda desimal sejajar
+                    <div class="mt-2 text-center font-mono">
+            `;
+            
+            // Display the mathematical arrangement
+            if (currentProblem.operation === 'realMixed3') {
+                const num1Str = currentProblem.numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = currentProblem.numbers[1].toFixed(2).replace('.', ',');
+                const num3Str = currentProblem.numbers[2].toFixed(2).replace('.', ',');
+                
+                solutionHTML += `
+                    <div class="bg-blue-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-blue-800">
+                            ${num1Str} + ${num2Str} - ${num3Str}
+                        </div>
+                    </div>
+                `;
+            } else if (currentProblem.operation === 'addition3' || currentProblem.operation === 'subtraction3') {
+                const num1Str = currentProblem.numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = currentProblem.numbers[1].toFixed(2).replace('.', ',');
+                const num3Str = currentProblem.numbers[2].toFixed(2).replace('.', ',');
+                const operatorSymbol = currentProblem.operation === 'addition3' ? '+' : '-';
+                
+                solutionHTML += `
+                    <div class="relative inline-block">
+                        <div class="text-right mb-2" style="width: 120px;">${num1Str}</div>
+                        <div class="text-right mb-2" style="width: 120px;">${num2Str}</div>
+                        <div class="relative mb-2">
+                            <div class="text-right" style="width: 120px;">${num3Str}</div>
+                            <div class="absolute right-0 top-0" style="right: -20px;">${operatorSymbol}</div>
+                        </div>
+                        <div class="decimal-line" style="width: 120px;"></div>
+                    </div>
+                `;
+            } else {
+                const num1Str = currentProblem.numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = currentProblem.numbers[1].toFixed(2).replace('.', ',');
+                const operatorSymbol = currentProblem.operation.includes('addition') ? '+' : '-';
+                
+                solutionHTML += `
+                    <div class="relative inline-block">
+                        <div class="text-right mb-2" style="width: 120px;">${num1Str}</div>
+                        <div class="relative mb-2">
+                            <div class="text-right" style="width: 120px;">${num2Str}</div>
+                            <div class="absolute right-0 top-0" style="right: -20px;">${operatorSymbol}</div>
+                        </div>
+                        <div class="decimal-line" style="width: 120px;"></div>
+                    </div>
+                `;
+            }
+            
+            solutionHTML += `
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <strong>Langkah 2:</strong> ${currentProblem.operation.includes('addition') ? 'Jumlahkan' : 'Kurangkan'} dari kanan ke kiri
+                    <div class="mt-2 text-sm text-gray-600">
+            `;
+            
+            // Add calculation steps
+            if (currentProblem.operation === 'realMixed3') {
+                const num1 = currentProblem.numbers[0].toFixed(2);
+                const num2 = currentProblem.numbers[1].toFixed(2);
+                const num3 = currentProblem.numbers[2].toFixed(2);
+                
+                if (currentProblem.operationPattern === 'add_subtract') {
+                    solutionHTML += `
+                        • Langkah 1: ${num1.replace('.', ',')} + ${num2.replace('.', ',')} = ${(currentProblem.numbers[0] + currentProblem.numbers[1]).toFixed(2).replace('.', ',')}
+                        <br>
+                        • Langkah 2: ${(currentProblem.numbers[0] + currentProblem.numbers[1]).toFixed(2).replace('.', ',')} - ${num3.replace('.', ',')} = ${currentProblem.answer.toFixed(2).replace('.', ',')}
+                        <br>
+                        • Atau hitung sekaligus: ${num1.replace('.', ',')} + ${num2.replace('.', ',')} - ${num3.replace('.', ',')}
+                    `;
+                } else {
+                    solutionHTML += `
+                        • Langkah 1: ${num1.replace('.', ',')} - ${num2.replace('.', ',')} = ${(currentProblem.numbers[0] - currentProblem.numbers[1]).toFixed(2).replace('.', ',')}
+                        <br>
+                        • Langkah 2: ${(currentProblem.numbers[0] - currentProblem.numbers[1]).toFixed(2).replace('.', ',')} + ${num3.replace('.', ',')} = ${currentProblem.answer.toFixed(2).replace('.', ',')}
+                        <br>
+                        • Atau hitung sekaligus: ${num1.replace('.', ',')} - ${num2.replace('.', ',')} + ${num3.replace('.', ',')}
+                    `;
+                }
+            } else if (currentProblem.operation === 'addition3') {
+                const num1 = currentProblem.numbers[0].toFixed(2);
+                const num2 = currentProblem.numbers[1].toFixed(2);
+                const num3 = currentProblem.numbers[2].toFixed(2);
+                solutionHTML += `
+                    • Tempat perseratus: ${num1.slice(-1)} + ${num2.slice(-1)} + ${num3.slice(-1)} = ${(parseInt(num1.slice(-1)) + parseInt(num2.slice(-1)) + parseInt(num3.slice(-1)))}
+                    <br>
+                    • Tempat persepuluh: ${num1.slice(-3, -2)} + ${num2.slice(-3, -2)} + ${num3.slice(-3, -2)} = ${(parseInt(num1.slice(-3, -2)) + parseInt(num2.slice(-3, -2)) + parseInt(num3.slice(-3, -2)))}
+                    <br>
+                    • Dan seterusnya...
+                `;
+            } else if (currentProblem.operation === 'subtraction3') {
+                const num1 = currentProblem.numbers[0].toFixed(2);
+                const num2 = currentProblem.numbers[1].toFixed(2);
+                const num3 = currentProblem.numbers[2].toFixed(2);
+                solutionHTML += `
+                    • Tempat perseratus: ${num1.slice(-1)} - ${num2.slice(-1)} - ${num3.slice(-1)} = ${(parseInt(num1.slice(-1)) - parseInt(num2.slice(-1)) - parseInt(num3.slice(-1)))}
+                    <br>
+                    • Tempat persepuluh: ${num1.slice(-3, -2)} - ${num2.slice(-3, -2)} - ${num3.slice(-3, -2)} = ${(parseInt(num1.slice(-3, -2)) - parseInt(num2.slice(-3, -2)) - parseInt(num3.slice(-3, -2)))}
+                    <br>
+                    • Dan seterusnya... (pinjam jika perlu)
+                `;
+            } else if (currentProblem.operation === 'addition') {
+                const num1 = currentProblem.numbers[0].toFixed(2);
+                const num2 = currentProblem.numbers[1].toFixed(2);
+                solutionHTML += `
+                    • Tempat perseratus: ${num1.slice(-1)} + ${num2.slice(-1)} = ${(parseInt(num1.slice(-1)) + parseInt(num2.slice(-1)))}
+                    <br>
+                    • Tempat persepuluh: ${num1.slice(-3, -2)} + ${num2.slice(-3, -2)} = ${(parseInt(num1.slice(-3, -2)) + parseInt(num2.slice(-3, -2)))}
+                    <br>
+                    • Dan seterusnya...
+                `;
+            } else {
+                const num1 = currentProblem.numbers[0].toFixed(2);
+                const num2 = currentProblem.numbers[1].toFixed(2);
+                solutionHTML += `
+                    • Tempat perseratus: ${num1.slice(-1)} - ${num2.slice(-1)} = ${(parseInt(num1.slice(-1)) - parseInt(num2.slice(-1)))}
+                    <br>
+                    • Tempat persepuluh: ${num1.slice(-3, -2)} - ${num2.slice(-3, -2)} = ${(parseInt(num1.slice(-3, -2)) - parseInt(num2.slice(-3, -2)))}
+                    <br>
+                    • Dan seterusnya... (pinjam jika perlu)
+                `;
+            }
+            
+            solutionHTML += `
+                    </div>
+                </div>
+                
+                <div>
+                    <strong>Hasil akhir:</strong>
+                    <div class="mt-2 text-center ${currentProblem.operation.includes('addition') ? 'text-green-600' : 'text-orange-600'} font-bold font-mono">
+            `;
+            
+            // Display final result
+            if (currentProblem.operation === 'realMixed3') {
+                const num1Str = currentProblem.numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = currentProblem.numbers[1].toFixed(2).replace('.', ',');
+                const num3Str = currentProblem.numbers[2].toFixed(2).replace('.', ',');
+                
+                let operationString;
+                if (currentProblem.operationPattern === 'add_subtract') {
+                    operationString = `${num1Str} + ${num2Str} - ${num3Str} = ${answerStr}`;
+                } else {
+                    operationString = `${num1Str} - ${num2Str} + ${num3Str} = ${answerStr}`;
+                }
+                
+                solutionHTML += `
+                    <div class="bg-green-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-green-800">
+                            ${operationString}
+                        </div>
+                    </div>
+                `;
+            } else if (currentProblem.operation === 'addition3' || currentProblem.operation === 'subtraction3') {
+                const num1Str = currentProblem.numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = currentProblem.numbers[1].toFixed(2).replace('.', ',');
+                const num3Str = currentProblem.numbers[2].toFixed(2).replace('.', ',');
+                const operatorSymbol = currentProblem.operation === 'addition3' ? '+' : '-';
+                
+                solutionHTML += `
+                    <div class="relative inline-block">
+                        <div class="text-right mb-2" style="width: 120px;">${num1Str}</div>
+                        <div class="text-right mb-2" style="width: 120px;">${num2Str}</div>
+                        <div class="relative mb-2">
+                            <div class="text-right" style="width: 120px;">${num3Str}</div>
+                            <div class="absolute right-0 top-0" style="right: -20px;">${operatorSymbol}</div>
+                        </div>
+                        <div class="decimal-line" style="width: 120px;"></div>
+                        <div class="text-right" style="width: 120px;">${answerStr}</div>
+                    </div>
+                `;
+            } else {
+                const num1Str = currentProblem.numbers[0].toFixed(2).replace('.', ',');
+                const num2Str = currentProblem.numbers[1].toFixed(2).replace('.', ',');
+                const operatorSymbol = currentProblem.operation.includes('addition') ? '+' : '-';
+                
+                solutionHTML += `
+                    <div class="relative inline-block">
+                        <div class="text-right mb-2" style="width: 120px;">${num1Str}</div>
+                        <div class="relative mb-2">
+                            <div class="text-right" style="width: 120px;">${num2Str}</div>
+                            <div class="absolute right-0 top-0" style="right: -20px;">${operatorSymbol}</div>
+                        </div>
+                        <div class="decimal-line" style="width: 120px;"></div>
+                        <div class="text-right" style="width: 120px;">${answerStr}</div>
+                    </div>
+                `;
+            }
+            
+            solutionHTML += `
+                    </div>
+                </div>
+            </div>
+            `;
+            
+            solutionSteps.innerHTML = solutionHTML;
+            solutionArea.classList.remove('hidden');
+        }
+
+        function showHint() {
+            let hintText = '';
+            
+            if (currentProblem.story) {
+                hintText = `💡 Petunjuk Soal Cerita:\n\n1. Baca cerita dengan teliti\n2. Identifikasi bilangan-bilangan yang ada\n3. Tentukan operasi yang diperlukan:\n   - Jika menambah/menggabungkan → Penjumlahan\n   - Jika mengurangi/menggunakan → Pengurangan\n4. Susun bilangan bersusun dengan koma sejajar\n5. Hitung dari kanan ke kiri\n\nCerita: ${currentProblem.story}\nPertanyaan: ${currentProblem.question}`;
+            } else {
+                const numbersFormatted = currentProblem.numbers.map(num => num.toFixed(2).replace('.', ',')).join(', ');
+                
+                if (currentProblem.operation === 'realMixed3') {
+                    if (currentProblem.operationPattern === 'add_subtract') {
+                        hintText = `💡 Petunjuk Operasi Campuran (+ dan -):\n\n1. Perhatikan urutan operasi: tambah dulu, lalu kurangi\n2. Bisa hitung bertahap: ${currentProblem.numbers[0].toFixed(2).replace('.', ',')} + ${currentProblem.numbers[1].toFixed(2).replace('.', ',')} = ${(currentProblem.numbers[0] + currentProblem.numbers[1]).toFixed(2).replace('.', ',')}\n3. Kemudian kurangi: ${(currentProblem.numbers[0] + currentProblem.numbers[1]).toFixed(2).replace('.', ',')} - ${currentProblem.numbers[2].toFixed(2).replace('.', ',')} = ?\n4. Atau hitung sekaligus dari kiri ke kanan\n\nBilangan: ${numbersFormatted}`;
+                    } else {
+                        hintText = `💡 Petunjuk Operasi Campuran (- dan +):\n\n1. Perhatikan urutan operasi: kurangi dulu, lalu tambah\n2. Bisa hitung bertahap: ${currentProblem.numbers[0].toFixed(2).replace('.', ',')} - ${currentProblem.numbers[1].toFixed(2).replace('.', ',')} = ${(currentProblem.numbers[0] - currentProblem.numbers[1]).toFixed(2).replace('.', ',')}\n3. Kemudian tambah: ${(currentProblem.numbers[0] - currentProblem.numbers[1]).toFixed(2).replace('.', ',')} + ${currentProblem.numbers[2].toFixed(2).replace('.', ',')} = ?\n4. Atau hitung sekaligus dari kiri ke kanan\n\nBilangan: ${numbersFormatted}`;
+                    }
+                } else if (currentProblem.operation === 'addition3') {
+                    hintText = `💡 Petunjuk Penjumlahan 3 Bilangan:\n\n1. Pastikan tanda koma desimal sejajar\n2. Mulai penjumlahan dari digit paling kanan\n3. Jumlahkan ketiga digit sekaligus\n4. Jangan lupa menyimpan jika hasil > 9\n5. Letakkan tanda koma pada posisi yang sama\n\nBilangan: ${numbersFormatted}`;
+                } else if (currentProblem.operation === 'subtraction3') {
+                    hintText = `💡 Petunjuk Pengurangan 3 Bilangan:\n\n1. Pastikan tanda koma desimal sejajar\n2. Mulai pengurangan dari digit paling kanan\n3. Kurangkan bilangan kedua dan ketiga dari yang pertama\n4. Pinjam dari tempat nilai di sebelah kiri jika perlu\n5. Letakkan tanda koma pada posisi yang sama\n\nBilangan: ${numbersFormatted}`;
+                } else if (currentProblem.operation === 'addition') {
+                    hintText = `💡 Petunjuk Penjumlahan:\n\n1. Pastikan tanda koma desimal sejajar\n2. Mulai penjumlahan dari digit paling kanan\n3. Jangan lupa menyimpan jika hasil > 9\n4. Letakkan tanda koma pada posisi yang sama\n\nBilangan: ${numbersFormatted}`;
+                } else {
+                    hintText = `💡 Petunjuk Pengurangan:\n\n1. Pastikan tanda koma desimal sejajar\n2. Mulai pengurangan dari digit paling kanan\n3. Pinjam dari tempat nilai di sebelah kiri jika perlu\n4. Letakkan tanda koma pada posisi yang sama\n\nBilangan: ${numbersFormatted}`;
+                }
+            }
+            
+            alert(hintText);
+        }
+
+        function updateStats() {
+            document.getElementById('correctCount').textContent = stats.correct;
+            document.getElementById('incorrectCount').textContent = stats.incorrect;
+            document.getElementById('totalCount').textContent = stats.total;
+        }
+
+        // Handle Enter key in input
+        document.getElementById('answerInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+
+        // Generate initial problem
+        generateNewProblem();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98310f2011fecec2',t:'MTc1ODUzNjMxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

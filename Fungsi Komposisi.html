@@ -1,0 +1,2344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Interaktif - Komposisi Fungsi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-indigo-800 mb-2">Latihan Interaktif</h1>
+            <h2 class="text-2xl font-semibold text-indigo-600">Komposisi Fungsi</h2>
+        </div>
+
+        <!-- Navigation -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Pilih Topik yang Ingin Dipelajari:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                <button onclick="showTopic('penjumlahan')" class="nav-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors text-sm">
+                    ➕ Penjumlahan Fungsi
+                </button>
+                <button onclick="showTopic('pengurangan')" class="nav-btn bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors text-sm">
+                    ➖ Pengurangan Fungsi
+                </button>
+                <button onclick="showTopic('perkalian')" class="nav-btn bg-purple-500 hover:bg-purple-600 text-white px-4 py-3 rounded-lg transition-colors text-sm">
+                    ✖️ Perkalian Fungsi
+                </button>
+                <button onclick="showTopic('pembagian')" class="nav-btn bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-colors text-sm">
+                    ➗ Pembagian Fungsi
+                </button>
+                <button onclick="showTopic('domain')" class="nav-btn bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg transition-colors text-sm">
+                    🎯 Domain, Kodomain & Range
+                </button>
+                <button onclick="showTopic('nilai')" class="nav-btn bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-3 rounded-lg transition-colors text-sm">
+                    🔢 Menentukan Nilai Fungsi
+                </button>
+                <button onclick="showTopic('komposisi')" class="nav-btn bg-pink-500 hover:bg-pink-600 text-white px-4 py-3 rounded-lg transition-colors text-sm">
+                    🔄 Fungsi Komposisi
+                </button>
+                <button onclick="showTopic('domain-komposisi')" class="nav-btn bg-teal-500 hover:bg-teal-600 text-white px-4 py-3 rounded-lg transition-colors text-sm">
+                    📐 Domain Fungsi Komposisi
+                </button>
+            </div>
+        </div>
+
+        <!-- Topic Sections -->
+        
+        <!-- Penjumlahan Fungsi -->
+        <div id="penjumlahan" class="topic-section bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+            <h3 class="text-2xl font-bold text-blue-800 mb-6">➕ Penjumlahan Fungsi</h3>
+            
+            <!-- Materi -->
+            <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-blue-800 mb-3">📚 Materi</h4>
+                <div class="space-y-2 text-gray-700">
+                    <p><strong>Definisi:</strong> $(f + g)(x) = f(x) + g(x)$</p>
+                    <p><strong>Cara kerja:</strong> Jumlahkan nilai fungsi f(x) dengan nilai fungsi g(x) untuk setiap nilai x yang sama.</p>
+                    <p><strong>Domain:</strong> $D_{f+g} = D_f \cap D_g$ (irisan domain f dan g)</p>
+                    <p><strong>Dua jenis soal:</strong></p>
+                    <p class="ml-4">• Menentukan nilai: $(f + g)(a)$ untuk nilai tertentu</p>
+                    <p class="ml-4">• Menentukan rumus: $(f + g)(x)$ dalam bentuk umum</p>
+                </div>
+            </div>
+
+            <!-- Pilihan Jenis Soal -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">🎯 Pilih Jenis Soal</h4>
+                <div class="flex gap-4 mb-4">
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisPenjumlahan" value="nilai" checked class="mr-2">
+                        <span>Menentukan Nilai $(f + g)(a)$</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisPenjumlahan" value="rumus" class="mr-2">
+                        <span>Menentukan Rumus $(f + g)(x)$</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Contoh & Latihan -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contoh Soal -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">💡 Contoh Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="penjumlahanContohFungsi" onchange="generateContohPenjumlahan()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateContohPenjumlahan()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Generate Soal Baru
+                    </button>
+
+                    <div id="contohPenjumlahan" class="bg-white p-3 rounded border mb-4"></div>
+                    <div id="pembahasanPenjumlahan" class="bg-blue-100 p-3 rounded"></div>
+                </div>
+
+                <!-- Latihan -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">✏️ Latihan Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="penjumlahanLatihanFungsi" onchange="generateLatihanPenjumlahan()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateLatihanPenjumlahan()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Soal Baru
+                    </button>
+
+                    <div id="latihanPenjumlahan" class="bg-white p-3 rounded border mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="jawabanPenjumlahan" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Masukkan jawaban...">
+                    </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="cekJawabanPenjumlahan()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+                            ✅ Cek
+                        </button>
+                        <button onclick="showPembahasanPenjumlahan()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+                            💡 Pembahasan
+                        </button>
+                    </div>
+
+                    <div id="hasilPenjumlahan" class="mb-4"></div>
+                    <div id="pembahasanLatihanPenjumlahan" class="bg-blue-100 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pengurangan Fungsi -->
+        <div id="pengurangan" class="topic-section bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+            <h3 class="text-2xl font-bold text-green-800 mb-6">➖ Pengurangan Fungsi</h3>
+            
+            <!-- Materi -->
+            <div class="bg-green-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-green-800 mb-3">📚 Materi</h4>
+                <div class="space-y-2 text-gray-700">
+                    <p><strong>Definisi:</strong> $(f - g)(x) = f(x) - g(x)$</p>
+                    <p><strong>Cara kerja:</strong> Kurangkan nilai fungsi g(x) dari nilai fungsi f(x) untuk setiap nilai x yang sama.</p>
+                    <p><strong>Domain:</strong> $D_{f-g} = D_f \cap D_g$ (irisan domain f dan g)</p>
+                    <p><strong>Dua jenis soal:</strong></p>
+                    <p class="ml-4">• Menentukan nilai: $(f - g)(a)$ untuk nilai tertentu</p>
+                    <p class="ml-4">• Menentukan rumus: $(f - g)(x)$ dalam bentuk umum</p>
+                </div>
+            </div>
+
+            <!-- Pilihan Jenis Soal -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">🎯 Pilih Jenis Soal</h4>
+                <div class="flex gap-4 mb-4">
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisPengurangan" value="nilai" checked class="mr-2">
+                        <span>Menentukan Nilai $(f - g)(a)$</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisPengurangan" value="rumus" class="mr-2">
+                        <span>Menentukan Rumus $(f - g)(x)$</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Contoh & Latihan -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contoh Soal -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">💡 Contoh Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="penguranganContohFungsi" onchange="generateContohPengurangan()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateContohPengurangan()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Generate Soal Baru
+                    </button>
+
+                    <div id="contohPengurangan" class="bg-white p-3 rounded border mb-4"></div>
+                    <div id="pembahasanPengurangan" class="bg-green-100 p-3 rounded"></div>
+                </div>
+
+                <!-- Latihan -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">✏️ Latihan Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="penguranganLatihanFungsi" onchange="generateLatihanPengurangan()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateLatihanPengurangan()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Soal Baru
+                    </button>
+
+                    <div id="latihanPengurangan" class="bg-white p-3 rounded border mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="jawabanPengurangan" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Masukkan jawaban...">
+                    </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="cekJawabanPengurangan()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+                            ✅ Cek
+                        </button>
+                        <button onclick="showPembahasanPengurangan()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+                            💡 Pembahasan
+                        </button>
+                    </div>
+
+                    <div id="hasilPengurangan" class="mb-4"></div>
+                    <div id="pembahasanLatihanPengurangan" class="bg-green-100 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Perkalian Fungsi -->
+        <div id="perkalian" class="topic-section bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+            <h3 class="text-2xl font-bold text-purple-800 mb-6">✖️ Perkalian Fungsi</h3>
+            
+            <!-- Materi -->
+            <div class="bg-purple-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-purple-800 mb-3">📚 Materi</h4>
+                <div class="space-y-2 text-gray-700">
+                    <p><strong>Definisi:</strong> $(f \cdot g)(x) = f(x) \cdot g(x)$</p>
+                    <p><strong>Cara kerja:</strong> Kalikan nilai fungsi f(x) dengan nilai fungsi g(x) untuk setiap nilai x yang sama.</p>
+                    <p><strong>Domain:</strong> $D_{f \cdot g} = D_f \cap D_g$ (irisan domain f dan g)</p>
+                    <p><strong>Dua jenis soal:</strong></p>
+                    <p class="ml-4">• Menentukan nilai: $(f \cdot g)(a)$ untuk nilai tertentu</p>
+                    <p class="ml-4">• Menentukan rumus: $(f \cdot g)(x)$ dalam bentuk umum</p>
+                </div>
+            </div>
+
+            <!-- Pilihan Jenis Soal -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">🎯 Pilih Jenis Soal</h4>
+                <div class="flex gap-4 mb-4">
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisPerkalian" value="nilai" checked class="mr-2">
+                        <span>Menentukan Nilai $(f \cdot g)(a)$</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisPerkalian" value="rumus" class="mr-2">
+                        <span>Menentukan Rumus $(f \cdot g)(x)$</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Contoh & Latihan -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contoh Soal -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">💡 Contoh Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="perkalianContohFungsi" onchange="generateContohPerkalian()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateContohPerkalian()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Generate Soal Baru
+                    </button>
+
+                    <div id="contohPerkalian" class="bg-white p-3 rounded border mb-4"></div>
+                    <div id="pembahasanPerkalian" class="bg-purple-100 p-3 rounded"></div>
+                </div>
+
+                <!-- Latihan -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">✏️ Latihan Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="perkalianLatihanFungsi" onchange="generateLatihanPerkalian()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateLatihanPerkalian()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Soal Baru
+                    </button>
+
+                    <div id="latihanPerkalian" class="bg-white p-3 rounded border mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="jawabanPerkalian" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Masukkan jawaban...">
+                    </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="cekJawabanPerkalian()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+                            ✅ Cek
+                        </button>
+                        <button onclick="showPembahasanPerkalian()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+                            💡 Pembahasan
+                        </button>
+                    </div>
+
+                    <div id="hasilPerkalian" class="mb-4"></div>
+                    <div id="pembahasanLatihanPerkalian" class="bg-purple-100 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pembagian Fungsi -->
+        <div id="pembagian" class="topic-section bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+            <h3 class="text-2xl font-bold text-orange-800 mb-6">➗ Pembagian Fungsi</h3>
+            
+            <!-- Materi -->
+            <div class="bg-orange-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-orange-800 mb-3">📚 Materi</h4>
+                <div class="space-y-2 text-gray-700">
+                    <p><strong>Definisi:</strong> $(\frac{f}{g})(x) = \frac{f(x)}{g(x)}$</p>
+                    <p><strong>Syarat:</strong> $g(x) \neq 0$ (penyebut tidak boleh nol)</p>
+                    <p><strong>Domain:</strong> $D_{\frac{f}{g}} = D_f \cap D_g \cap \{x | g(x) \neq 0\}$</p>
+                    <p><strong>Dua jenis soal:</strong></p>
+                    <p class="ml-4">• Menentukan nilai: $(\frac{f}{g})(a)$ untuk nilai tertentu</p>
+                    <p class="ml-4">• Menentukan rumus: $(\frac{f}{g})(x)$ dalam bentuk umum</p>
+                </div>
+            </div>
+
+            <!-- Pilihan Jenis Soal -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">🎯 Pilih Jenis Soal</h4>
+                <div class="flex gap-4 mb-4">
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisPembagian" value="nilai" checked class="mr-2">
+                        <span>Menentukan Nilai $(\frac{f}{g})(a)$</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisPembagian" value="rumus" class="mr-2">
+                        <span>Menentukan Rumus $(\frac{f}{g})(x)$</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Contoh & Latihan -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contoh Soal -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">💡 Contoh Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="pembagianContohFungsi" onchange="generateContohPembagian()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateContohPembagian()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Generate Soal Baru
+                    </button>
+
+                    <div id="contohPembagian" class="bg-white p-3 rounded border mb-4"></div>
+                    <div id="pembahasanPembagian" class="bg-orange-100 p-3 rounded"></div>
+                </div>
+
+                <!-- Latihan -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">✏️ Latihan Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="pembagianLatihanFungsi" onchange="generateLatihanPembagian()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateLatihanPembagian()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Soal Baru
+                    </button>
+
+                    <div id="latihanPembagian" class="bg-white p-3 rounded border mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="jawabanPembagian" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Masukkan jawaban...">
+                    </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="cekJawabanPembagian()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+                            ✅ Cek
+                        </button>
+                        <button onclick="showPembahasanPembagian()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+                            💡 Pembahasan
+                        </button>
+                    </div>
+
+                    <div id="hasilPembagian" class="mb-4"></div>
+                    <div id="pembahasanLatihanPembagian" class="bg-orange-100 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domain, Kodomain & Range -->
+        <div id="domain" class="topic-section bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+            <h3 class="text-2xl font-bold text-red-800 mb-6">🎯 Domain, Kodomain & Range</h3>
+            
+            <!-- Materi -->
+            <div class="bg-red-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-red-800 mb-3">📚 Materi</h4>
+                <div class="space-y-3 text-gray-700">
+                    <div>
+                        <p><strong>Domain:</strong> Himpunan semua nilai input (x) yang dapat dimasukkan ke fungsi</p>
+                        <p class="text-sm text-gray-600 ml-4">• Untuk fungsi linear: semua bilangan real</p>
+                        <p class="text-sm text-gray-600 ml-4">• Untuk fungsi pecahan: x ≠ nilai yang membuat penyebut = 0</p>
+                        <p class="text-sm text-gray-600 ml-4">• Untuk fungsi akar: nilai dalam akar ≥ 0</p>
+                    </div>
+                    <div>
+                        <p><strong>Kodomain:</strong> Himpunan semua nilai yang mungkin menjadi output (biasanya ℝ)</p>
+                    </div>
+                    <div>
+                        <p><strong>Range:</strong> Himpunan semua nilai output yang benar-benar dihasilkan fungsi</p>
+                        <p class="text-sm text-gray-600 ml-4">• Untuk f(x) = ax + b: Range = ℝ</p>
+                        <p class="text-sm text-gray-600 ml-4">• Untuk f(x) = ax² + bx + c: Range bergantung pada nilai a</p>
+                        <p class="text-sm text-gray-600 ml-4">• Untuk f(x) = √(ax + b): Range = [0, ∞)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh & Latihan -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contoh Soal -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">💡 Contoh Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="domainContohFungsi" onchange="generateContohDomain()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateContohDomain()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Generate Soal Baru
+                    </button>
+
+                    <div id="contohDomain" class="bg-white p-3 rounded border mb-4"></div>
+                    <div id="pembahasanDomain" class="bg-red-100 p-3 rounded"></div>
+                </div>
+
+                <!-- Latihan -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">✏️ Latihan Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="domainLatihanFungsi" onchange="generateLatihanDomain()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateLatihanDomain()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Soal Baru
+                    </button>
+
+                    <div id="latihanDomain" class="bg-white p-3 rounded border mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="jawabanDomain" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Masukkan jawaban...">
+                    </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="cekJawabanDomain()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+                            ✅ Cek
+                        </button>
+                        <button onclick="showPembahasanDomain()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+                            💡 Pembahasan
+                        </button>
+                    </div>
+
+                    <div id="hasilDomain" class="mb-4"></div>
+                    <div id="pembahasanLatihanDomain" class="bg-red-100 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menentukan Nilai Fungsi -->
+        <div id="nilai" class="topic-section bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+            <h3 class="text-2xl font-bold text-indigo-800 mb-6">🔢 Menentukan Nilai Fungsi</h3>
+            
+            <!-- Materi -->
+            <div class="bg-indigo-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-indigo-800 mb-3">📚 Materi</h4>
+                <div class="space-y-2 text-gray-700">
+                    <p><strong>Definisi:</strong> Menentukan nilai f(a) dengan mensubstitusi x = a ke dalam fungsi f(x)</p>
+                    <p><strong>Langkah:</strong> Ganti setiap x dalam fungsi dengan nilai yang diminta</p>
+                    <p><strong>Contoh:</strong> Jika f(x) = 2x + 1, maka f(3) = 2(3) + 1 = 7</p>
+                </div>
+            </div>
+
+            <!-- Contoh & Latihan -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contoh Soal -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">💡 Contoh Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="nilaiContohFungsi" onchange="generateContohNilai()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateContohNilai()" class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Generate Soal Baru
+                    </button>
+
+                    <div id="contohNilai" class="bg-white p-3 rounded border mb-4"></div>
+                    <div id="pembahasanNilai" class="bg-indigo-100 p-3 rounded"></div>
+                </div>
+
+                <!-- Latihan -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">✏️ Latihan Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="nilaiLatihanFungsi" onchange="generateLatihanNilai()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateLatihanNilai()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Soal Baru
+                    </button>
+
+                    <div id="latihanNilai" class="bg-white p-3 rounded border mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="jawabanNilai" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Masukkan jawaban...">
+                    </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="cekJawabanNilai()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+                            ✅ Cek
+                        </button>
+                        <button onclick="showPembahasanNilai()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+                            💡 Pembahasan
+                        </button>
+                    </div>
+
+                    <div id="hasilNilai" class="mb-4"></div>
+                    <div id="pembahasanLatihanNilai" class="bg-indigo-100 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fungsi Komposisi -->
+        <div id="komposisi" class="topic-section bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+            <h3 class="text-2xl font-bold text-pink-800 mb-6">🔄 Fungsi Komposisi</h3>
+            
+            <!-- Materi -->
+            <div class="bg-pink-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-pink-800 mb-3">📚 Materi</h4>
+                <div class="space-y-2 text-gray-700">
+                    <p><strong>Definisi:</strong> $(f \circ g)(x) = f(g(x))$</p>
+                    <p><strong>Cara kerja:</strong> Substitusikan g(x) ke dalam fungsi f(x)</p>
+                    <p><strong>Dua jenis soal:</strong></p>
+                    <p class="ml-4">• Menentukan nilai: $(f \circ g)(a)$ untuk nilai tertentu</p>
+                    <p class="ml-4">• Menentukan rumus: $(f \circ g)(x)$ dalam bentuk umum</p>
+                    <p><strong>Catatan:</strong> $(f \circ g)(x) \neq (g \circ f)(x)$ (tidak komutatif)</p>
+                </div>
+            </div>
+
+            <!-- Pilihan Jenis Soal -->
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">🎯 Pilih Jenis Soal</h4>
+                <div class="flex gap-4 mb-4">
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisKomposisi" value="nilai" checked class="mr-2">
+                        <span>Menentukan Nilai $(f \circ g)(a)$</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="jenisKomposisi" value="rumus" class="mr-2">
+                        <span>Menentukan Rumus $(f \circ g)(x)$</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Contoh & Latihan -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contoh Soal -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">💡 Contoh Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="komposisiContohFungsi" onchange="generateContohKomposisi()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateContohKomposisi()" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Generate Soal Baru
+                    </button>
+
+                    <div id="contohKomposisi" class="bg-white p-3 rounded border mb-4"></div>
+                    <div id="pembahasanKomposisi" class="bg-pink-100 p-3 rounded"></div>
+                </div>
+
+                <!-- Latihan -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">✏️ Latihan Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="komposisiLatihanFungsi" onchange="generateLatihanKomposisi()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateLatihanKomposisi()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Soal Baru
+                    </button>
+
+                    <div id="latihanKomposisi" class="bg-white p-3 rounded border mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="jawabanKomposisi" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Masukkan jawaban...">
+                    </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="cekJawabanKomposisi()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+                            ✅ Cek
+                        </button>
+                        <button onclick="showPembahasanKomposisi()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+                            💡 Pembahasan
+                        </button>
+                    </div>
+
+                    <div id="hasilKomposisi" class="mb-4"></div>
+                    <div id="pembahasanLatihanKomposisi" class="bg-pink-100 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domain Fungsi Komposisi -->
+        <div id="domain-komposisi" class="topic-section bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+            <h3 class="text-2xl font-bold text-teal-800 mb-6">📐 Domain Fungsi Komposisi</h3>
+            
+            <!-- Materi -->
+            <div class="bg-teal-50 p-4 rounded-lg mb-6">
+                <h4 class="text-lg font-semibold text-teal-800 mb-3">📚 Materi</h4>
+                <div class="space-y-2 text-gray-700">
+                    <p><strong>Definisi:</strong> Domain $(f \circ g)(x)$ adalah himpunan semua x dalam domain g sedemikian sehingga g(x) berada dalam domain f</p>
+                    <p><strong>Rumus:</strong> $D_{f \circ g} = \{x \in D_g | g(x) \in D_f\}$</p>
+                    <p><strong>Langkah menentukan:</strong></p>
+                    <p class="ml-4">1. Tentukan domain g(x)</p>
+                    <p class="ml-4">2. Tentukan domain f(x)</p>
+                    <p class="ml-4">3. Cari nilai x dimana g(x) memenuhi syarat domain f(x)</p>
+                </div>
+            </div>
+
+            <!-- Contoh & Latihan -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contoh Soal -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">💡 Contoh Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="domainKomposisiContohFungsi" onchange="generateContohDomainKomposisi()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateContohDomainKomposisi()" class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Generate Soal Baru
+                    </button>
+
+                    <div id="contohDomainKomposisi" class="bg-white p-3 rounded border mb-4"></div>
+                    <div id="pembahasanDomainKomposisi" class="bg-teal-100 p-3 rounded"></div>
+                </div>
+
+                <!-- Latihan -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">✏️ Latihan Soal</h4>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Fungsi:</label>
+                        <select id="domainKomposisiLatihanFungsi" onchange="generateLatihanDomainKomposisi()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <option value="linear">Linear</option>
+                            <option value="kuadrat">Kuadrat</option>
+                            <option value="pecahan">Pecahan</option>
+                            <option value="akar">Akar</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateLatihanDomainKomposisi()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg mb-4">
+                        🔄 Soal Baru
+                    </button>
+
+                    <div id="latihanDomainKomposisi" class="bg-white p-3 rounded border mb-4"></div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jawaban Anda:</label>
+                        <input type="text" id="jawabanDomainKomposisi" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Masukkan jawaban...">
+                    </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="cekJawabanDomainKomposisi()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm">
+                            ✅ Cek
+                        </button>
+                        <button onclick="showPembahasanDomainKomposisi()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
+                            💡 Pembahasan
+                        </button>
+                    </div>
+
+                    <div id="hasilDomainKomposisi" class="mb-4"></div>
+                    <div id="pembahasanLatihanDomainKomposisi" class="bg-teal-100 p-3 rounded hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables untuk menyimpan jawaban dan pembahasan
+        let currentAnswers = {};
+        let currentSolutions = {};
+
+        // Helper function untuk mengkonversi ke pecahan
+        function toFraction(numerator, denominator) {
+            if (numerator % denominator === 0) {
+                return `${numerator / denominator}`;
+            }
+            
+            // Sederhanakan pecahan
+            const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+            const commonDivisor = gcd(Math.abs(numerator), Math.abs(denominator));
+            const simplifiedNum = numerator / commonDivisor;
+            const simplifiedDen = denominator / commonDivisor;
+            
+            if (simplifiedDen === 1) {
+                return `${simplifiedNum}`;
+            } else if (simplifiedDen < 0) {
+                return `\\frac{${-simplifiedNum}}{${-simplifiedDen}}`;
+            } else {
+                return `\\frac{${simplifiedNum}}{${simplifiedDen}}`;
+            }
+        }
+
+        function showTopic(topic) {
+            // Hide all sections
+            document.querySelectorAll('.topic-section').forEach(s => s.classList.add('hidden'));
+            // Show selected section
+            document.getElementById(topic).classList.remove('hidden');
+            
+            // Update nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-offset-2');
+            });
+            event.target.classList.add('ring-2', 'ring-offset-2', 'ring-indigo-300');
+
+            // Initialize section
+            initializeTopic(topic);
+        }
+
+        function initializeTopic(topic) {
+            switch(topic) {
+                case 'penjumlahan':
+                    generateContohPenjumlahan();
+                    generateLatihanPenjumlahan();
+                    break;
+                case 'pengurangan':
+                    generateContohPengurangan();
+                    generateLatihanPengurangan();
+                    break;
+                case 'perkalian':
+                    generateContohPerkalian();
+                    generateLatihanPerkalian();
+                    break;
+                case 'pembagian':
+                    generateContohPembagian();
+                    generateLatihanPembagian();
+                    break;
+                case 'domain':
+                    generateContohDomain();
+                    generateLatihanDomain();
+                    break;
+                case 'nilai':
+                    generateContohNilai();
+                    generateLatihanNilai();
+                    break;
+                case 'komposisi':
+                    generateContohKomposisi();
+                    generateLatihanKomposisi();
+                    break;
+                case 'domain-komposisi':
+                    generateContohDomainKomposisi();
+                    generateLatihanDomainKomposisi();
+                    break;
+            }
+        }
+
+        function formatExpression(a, b, c, type) {
+            let expr = '';
+            
+            switch(type) {
+                case 'linear':
+                    // Format ax + b
+                    if (a === 1) expr = 'x';
+                    else if (a === -1) expr = '-x';
+                    else expr = `${a}x`;
+                    
+                    if (b > 0) expr += ` + ${b}`;
+                    else if (b < 0) expr += ` - ${Math.abs(b)}`;
+                    // Jika b = 0, tidak ditambahkan
+                    break;
+                    
+                case 'kuadrat':
+                    // Format ax² + bx + c
+                    if (a === 1) expr = 'x^2';
+                    else if (a === -1) expr = '-x^2';
+                    else expr = `${a}x^2`;
+                    
+                    if (b > 0) {
+                        if (b === 1) expr += ' + x';
+                        else expr += ` + ${b}x`;
+                    } else if (b < 0) {
+                        if (b === -1) expr += ' - x';
+                        else expr += ` - ${Math.abs(b)}x`;
+                    }
+                    
+                    if (c > 0) expr += ` + ${c}`;
+                    else if (c < 0) expr += ` - ${Math.abs(c)}`;
+                    break;
+                    
+                case 'pecahan':
+                    let numerator = '';
+                    if (a === 1) numerator = 'x';
+                    else if (a === -1) numerator = '-x';
+                    else numerator = `${a}x`;
+                    
+                    if (b > 0) numerator += ` + ${b}`;
+                    else if (b < 0) numerator += ` - ${Math.abs(b)}`;
+                    
+                    let denominator = '';
+                    if (c > 0) denominator = `x + ${c}`;
+                    else if (c < 0) denominator = `x - ${Math.abs(c)}`;
+                    else denominator = 'x';
+                    
+                    expr = `\\frac{${numerator}}{${denominator}}`;
+                    break;
+                    
+                case 'akar':
+                    let inside = '';
+                    if (a === 1) inside = 'x';
+                    else if (a === -1) inside = '-x';
+                    else inside = `${a}x`;
+                    
+                    if (b > 0) inside += ` + ${b}`;
+                    else if (b < 0) inside += ` - ${Math.abs(b)}`;
+                    
+                    expr = `\\sqrt{${inside}}`;
+                    break;
+            }
+            
+            return expr;
+        }
+
+        function generateFunction(type) {
+            const coeffs = {
+                a: Math.floor(Math.random() * 5) + 1,
+                b: Math.floor(Math.random() * 10) - 5,
+                c: Math.floor(Math.random() * 10) - 5
+            };
+
+            // Pastikan hasil selalu bilangan bulat dengan memilih nilai x yang tepat
+            const expr = formatExpression(coeffs.a, coeffs.b, coeffs.c, type);
+
+            switch(type) {
+                case 'linear':
+                    return {
+                        expr: expr,
+                        func: (x) => coeffs.a * x + coeffs.b,
+                        coeffs: coeffs
+                    };
+                case 'kuadrat':
+                    return {
+                        expr: expr,
+                        func: (x) => coeffs.a * x * x + coeffs.b * x + coeffs.c,
+                        coeffs: coeffs
+                    };
+                case 'pecahan':
+                    return {
+                        expr: expr,
+                        func: (x) => (coeffs.a * x + coeffs.b) / (x + coeffs.c),
+                        coeffs: coeffs
+                    };
+                case 'akar':
+                    return {
+                        expr: expr,
+                        func: (x) => Math.sqrt(coeffs.a * x + coeffs.b),
+                        coeffs: coeffs
+                    };
+            }
+        }
+
+        function getValidX(f, g, type) {
+            // Pilih nilai x yang menghasilkan bilangan bulat
+            for (let x = 1; x <= 10; x++) {
+                try {
+                    const fVal = f.func(x);
+                    const gVal = g ? g.func(x) : 0;
+                    
+                    // Pastikan hasil adalah bilangan bulat
+                    if (Number.isInteger(fVal) && (!g || Number.isInteger(gVal))) {
+                        // Untuk pecahan, pastikan penyebut tidak nol
+                        if (type === 'pecahan' && Math.abs(x + f.coeffs.c) < 0.001) continue;
+                        if (g && type === 'pecahan' && Math.abs(x + g.coeffs.c) < 0.001) continue;
+                        
+                        // Untuk akar, pastikan nilai dalam akar positif
+                        if (type === 'akar' && (f.coeffs.a * x + f.coeffs.b) < 0) continue;
+                        if (g && type === 'akar' && (g.coeffs.a * x + g.coeffs.b) < 0) continue;
+                        
+                        return x;
+                    }
+                } catch (e) {
+                    continue;
+                }
+            }
+            return 2; // fallback
+        }
+
+        // Penjumlahan Fungsi
+        function generateContohPenjumlahan() {
+            const fungsiType = document.getElementById('penjumlahanContohFungsi').value;
+            const jenisSoal = document.querySelector('input[name="jenisPenjumlahan"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisSoal === 'nilai') {
+                const x = getValidX(f, g, fungsiType);
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f + g)(${x})$!</p>`;
+                
+                const fVal = Math.round(f.func(x));
+                const gVal = Math.round(g.func(x));
+                const result = fVal + gVal;
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung nilai $f(${x})$</p>
+                        <p>$f(${x}) = ${f.expr.replace(/x/g, `${x}`)} = ${fVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Hitung nilai $g(${x})$</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Lakukan penjumlahan</p>
+                        <p>$(f + g)(${x}) = f(${x}) + g(${x}) = ${fVal} + ${gVal} = ${result}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $${result}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohPenjumlahan').innerHTML = soal;
+                document.getElementById('pembahasanPenjumlahan').innerHTML = pembahasan;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f + g)(x)$!</p>`;
+                
+                // Buat rumus penjumlahan
+                let resultExpr = '';
+                if (fungsiType === 'linear') {
+                    const newA = f.coeffs.a + g.coeffs.a;
+                    const newB = f.coeffs.b + g.coeffs.b;
+                    resultExpr = formatExpression(newA, newB, 0, 'linear');
+                } else {
+                    resultExpr = `(${f.expr}) + (${g.expr})`;
+                }
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Tulis definisi penjumlahan fungsi</p>
+                        <p>$(f + g)(x) = f(x) + g(x)$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi fungsi f(x) dan g(x)</p>
+                        <p>$(f + g)(x) = (${f.expr}) + (${g.expr})$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Sederhanakan</p>
+                        <p>$(f + g)(x) = ${resultExpr}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(f + g)(x) = ${resultExpr}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohPenjumlahan').innerHTML = soal;
+                document.getElementById('pembahasanPenjumlahan').innerHTML = pembahasan;
+            }
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function generateLatihanPenjumlahan() {
+            const fungsiType = document.getElementById('penjumlahanLatihanFungsi').value;
+            const jenisSoal = document.querySelector('input[name="jenisPenjumlahan"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisSoal === 'nilai') {
+                const x = getValidX(f, g, fungsiType);
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f + g)(${x})$!</p>`;
+                
+                const fVal = Math.round(f.func(x));
+                const gVal = Math.round(g.func(x));
+                const answer = fVal + gVal;
+
+                const solution = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung nilai $f(${x})$</p>
+                        <p>$f(${x}) = ${f.expr.replace(/x/g, `${x}`)} = ${fVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Hitung nilai $g(${x})$</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Lakukan penjumlahan</p>
+                        <p>$(f + g)(${x}) = f(${x}) + g(${x}) = ${fVal} + ${gVal} = ${answer}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $${answer}$</p>
+                        </div>
+                    </div>
+                `;
+
+                currentAnswers['penjumlahan'] = answer.toString();
+                currentSolutions['penjumlahan'] = solution;
+
+                document.getElementById('latihanPenjumlahan').innerHTML = soal;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f + g)(x)$!</p>`;
+                
+                // Buat rumus penjumlahan
+                let answer = '';
+                if (fungsiType === 'linear') {
+                    const newA = f.coeffs.a + g.coeffs.a;
+                    const newB = f.coeffs.b + g.coeffs.b;
+                    answer = formatExpression(newA, newB, 0, 'linear');
+                } else {
+                    answer = `(${f.expr}) + (${g.expr})`;
+                }
+
+                const solution = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Tulis definisi penjumlahan fungsi</p>
+                        <p>$(f + g)(x) = f(x) + g(x)$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi fungsi f(x) dan g(x)</p>
+                        <p>$(f + g)(x) = (${f.expr}) + (${g.expr})$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Sederhanakan</p>
+                        <p>$(f + g)(x) = ${answer}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(f + g)(x) = ${answer}$</p>
+                        </div>
+                    </div>
+                `;
+
+                currentAnswers['penjumlahan'] = answer;
+                currentSolutions['penjumlahan'] = solution;
+
+                document.getElementById('latihanPenjumlahan').innerHTML = soal;
+            }
+            
+            document.getElementById('jawabanPenjumlahan').value = '';
+            document.getElementById('hasilPenjumlahan').innerHTML = '';
+            document.getElementById('pembahasanLatihanPenjumlahan').classList.add('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function cekJawabanPenjumlahan() {
+            const userAnswer = document.getElementById('jawabanPenjumlahan').value.trim();
+            const hasilDiv = document.getElementById('hasilPenjumlahan');
+            
+            if (!userAnswer) {
+                hasilDiv.innerHTML = '<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">Silakan masukkan jawaban terlebih dahulu!</div>';
+                return;
+            }
+
+            const numericAnswer = parseFloat(userAnswer);
+            const correctAnswer = parseFloat(currentAnswers['penjumlahan']);
+            const isCorrect = Math.abs(numericAnswer - correctAnswer) < 0.001;
+
+            if (isCorrect) {
+                hasilDiv.innerHTML = '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">🎉 Benar! Jawaban Anda tepat!</div>';
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">❌ Jawaban kurang tepat. Jawaban yang benar adalah: ${currentAnswers['penjumlahan']}</div>`;
+            }
+        }
+
+        function showPembahasanPenjumlahan() {
+            const pembahasanDiv = document.getElementById('pembahasanLatihanPenjumlahan');
+            pembahasanDiv.innerHTML = `<h4 class="font-semibold text-blue-800 mb-3">📝 Pembahasan Lengkap:</h4>${currentSolutions['penjumlahan']}`;
+            pembahasanDiv.classList.remove('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Pengurangan Fungsi
+        function generateContohPengurangan() {
+            const fungsiType = document.getElementById('penguranganContohFungsi').value;
+            const jenisSoal = document.querySelector('input[name="jenisPengurangan"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisSoal === 'nilai') {
+                const x = getValidX(f, g, fungsiType);
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f - g)(${x})$!</p>`;
+                
+                const fVal = Math.round(f.func(x));
+                const gVal = Math.round(g.func(x));
+                const result = fVal - gVal;
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung nilai $f(${x})$</p>
+                        <p>$f(${x}) = ${f.expr.replace(/x/g, `${x}`)} = ${fVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Hitung nilai $g(${x})$</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Lakukan pengurangan</p>
+                        <p>$(f - g)(${x}) = f(${x}) - g(${x}) = ${fVal} - ${gVal} = ${result}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $${result}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohPengurangan').innerHTML = soal;
+                document.getElementById('pembahasanPengurangan').innerHTML = pembahasan;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f - g)(x)$!</p>`;
+                
+                // Buat rumus pengurangan
+                let resultExpr = '';
+                if (fungsiType === 'linear') {
+                    const newA = f.coeffs.a - g.coeffs.a;
+                    const newB = f.coeffs.b - g.coeffs.b;
+                    resultExpr = formatExpression(newA, newB, 0, 'linear');
+                } else {
+                    resultExpr = `(${f.expr}) - (${g.expr})`;
+                }
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Tulis definisi pengurangan fungsi</p>
+                        <p>$(f - g)(x) = f(x) - g(x)$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi fungsi f(x) dan g(x)</p>
+                        <p>$(f - g)(x) = (${f.expr}) - (${g.expr})$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Sederhanakan</p>
+                        <p>$(f - g)(x) = ${resultExpr}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(f - g)(x) = ${resultExpr}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohPengurangan').innerHTML = soal;
+                document.getElementById('pembahasanPengurangan').innerHTML = pembahasan;
+            }
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function generateLatihanPengurangan() {
+            const fungsiType = document.getElementById('penguranganLatihanFungsi').value;
+            const jenisSoal = document.querySelector('input[name="jenisPengurangan"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisSoal === 'nilai') {
+                const x = getValidX(f, g, fungsiType);
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f - g)(${x})$!</p>`;
+                
+                const fVal = Math.round(f.func(x));
+                const gVal = Math.round(g.func(x));
+                const answer = fVal - gVal;
+
+                const solution = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung nilai $f(${x})$</p>
+                        <p>$f(${x}) = ${f.expr.replace(/x/g, `${x}`)} = ${fVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Hitung nilai $g(${x})$</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Lakukan pengurangan</p>
+                        <p>$(f - g)(${x}) = f(${x}) - g(${x}) = ${fVal} - ${gVal} = ${answer}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $${answer}$</p>
+                        </div>
+                    </div>
+                `;
+
+                currentAnswers['pengurangan'] = answer.toString();
+                currentSolutions['pengurangan'] = solution;
+
+                document.getElementById('latihanPengurangan').innerHTML = soal;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f - g)(x)$!</p>`;
+                
+                // Buat rumus pengurangan
+                let answer = '';
+                if (fungsiType === 'linear') {
+                    const newA = f.coeffs.a - g.coeffs.a;
+                    const newB = f.coeffs.b - g.coeffs.b;
+                    answer = formatExpression(newA, newB, 0, 'linear');
+                } else {
+                    answer = `(${f.expr}) - (${g.expr})`;
+                }
+
+                const solution = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Tulis definisi pengurangan fungsi</p>
+                        <p>$(f - g)(x) = f(x) - g(x)$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi fungsi f(x) dan g(x)</p>
+                        <p>$(f - g)(x) = (${f.expr}) - (${g.expr})$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Sederhanakan</p>
+                        <p>$(f - g)(x) = ${answer}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(f - g)(x) = ${answer}$</p>
+                        </div>
+                    </div>
+                `;
+
+                currentAnswers['pengurangan'] = answer;
+                currentSolutions['pengurangan'] = solution;
+
+                document.getElementById('latihanPengurangan').innerHTML = soal;
+            }
+            
+            document.getElementById('jawabanPengurangan').value = '';
+            document.getElementById('hasilPengurangan').innerHTML = '';
+            document.getElementById('pembahasanLatihanPengurangan').classList.add('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function cekJawabanPengurangan() {
+            const userAnswer = document.getElementById('jawabanPengurangan').value.trim();
+            const hasilDiv = document.getElementById('hasilPengurangan');
+            
+            if (!userAnswer) {
+                hasilDiv.innerHTML = '<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">Silakan masukkan jawaban terlebih dahulu!</div>';
+                return;
+            }
+
+            const numericAnswer = parseFloat(userAnswer);
+            const correctAnswer = parseFloat(currentAnswers['pengurangan']);
+            const isCorrect = Math.abs(numericAnswer - correctAnswer) < 0.001;
+
+            if (isCorrect) {
+                hasilDiv.innerHTML = '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">🎉 Benar! Jawaban Anda tepat!</div>';
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">❌ Jawaban kurang tepat. Jawaban yang benar adalah: ${currentAnswers['pengurangan']}</div>`;
+            }
+        }
+
+        function showPembahasanPengurangan() {
+            const pembahasanDiv = document.getElementById('pembahasanLatihanPengurangan');
+            pembahasanDiv.innerHTML = `<h4 class="font-semibold text-green-800 mb-3">📝 Pembahasan Lengkap:</h4>${currentSolutions['pengurangan']}`;
+            pembahasanDiv.classList.remove('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Perkalian Fungsi
+        function generateContohPerkalian() {
+            const fungsiType = document.getElementById('perkalianContohFungsi').value;
+            const jenisSoal = document.querySelector('input[name="jenisPerkalian"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisSoal === 'nilai') {
+                const x = getValidX(f, g, fungsiType);
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f \\cdot g)(${x})$!</p>`;
+                
+                const fVal = Math.round(f.func(x));
+                const gVal = Math.round(g.func(x));
+                const result = fVal * gVal;
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung nilai $f(${x})$</p>
+                        <p>$f(${x}) = ${f.expr.replace(/x/g, `${x}`)} = ${fVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Hitung nilai $g(${x})$</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Lakukan perkalian</p>
+                        <p>$(f \\cdot g)(${x}) = f(${x}) \\cdot g(${x}) = ${fVal} \\cdot ${gVal} = ${result}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $${result}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohPerkalian').innerHTML = soal;
+                document.getElementById('pembahasanPerkalian').innerHTML = pembahasan;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f \\cdot g)(x)$!</p>`;
+                
+                // Buat rumus perkalian
+                let resultExpr = '';
+                if (fungsiType === 'linear') {
+                    // (ax + b)(cx + d) = acx² + (ad + bc)x + bd
+                    const a = f.coeffs.a, b = f.coeffs.b;
+                    const c = g.coeffs.a, d = g.coeffs.b;
+                    const newA = a * c;
+                    const newB = a * d + b * c;
+                    const newC = b * d;
+                    resultExpr = formatExpression(newA, newB, newC, 'kuadrat');
+                } else {
+                    resultExpr = `(${f.expr}) \\cdot (${g.expr})`;
+                }
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Tulis definisi perkalian fungsi</p>
+                        <p>$(f \\cdot g)(x) = f(x) \\cdot g(x)$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi fungsi f(x) dan g(x)</p>
+                        <p>$(f \\cdot g)(x) = (${f.expr}) \\cdot (${g.expr})$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Sederhanakan</p>
+                        <p>$(f \\cdot g)(x) = ${resultExpr}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(f \\cdot g)(x) = ${resultExpr}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohPerkalian').innerHTML = soal;
+                document.getElementById('pembahasanPerkalian').innerHTML = pembahasan;
+            }
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function generateLatihanPerkalian() {
+            const fungsiType = document.getElementById('perkalianLatihanFungsi').value;
+            const jenisSoal = document.querySelector('input[name="jenisPerkalian"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisSoal === 'nilai') {
+                const x = getValidX(f, g, fungsiType);
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f \\cdot g)(${x})$!</p>`;
+                
+                const fVal = Math.round(f.func(x));
+                const gVal = Math.round(g.func(x));
+                const answer = fVal * gVal;
+
+                const solution = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung nilai $f(${x})$</p>
+                        <p>$f(${x}) = ${f.expr.replace(/x/g, `${x}`)} = ${fVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Hitung nilai $g(${x})$</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Lakukan perkalian</p>
+                        <p>$(f \\cdot g)(${x}) = f(${x}) \\cdot g(${x}) = ${fVal} \\cdot ${gVal} = ${answer}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $${answer}$</p>
+                        </div>
+                    </div>
+                `;
+
+                currentAnswers['perkalian'] = answer.toString();
+                currentSolutions['perkalian'] = solution;
+
+                document.getElementById('latihanPerkalian').innerHTML = soal;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f \\cdot g)(x)$!</p>`;
+                
+                // Buat rumus perkalian
+                let answer = '';
+                if (fungsiType === 'linear') {
+                    // (ax + b)(cx + d) = acx² + (ad + bc)x + bd
+                    const a = f.coeffs.a, b = f.coeffs.b;
+                    const c = g.coeffs.a, d = g.coeffs.b;
+                    const newA = a * c;
+                    const newB = a * d + b * c;
+                    const newC = b * d;
+                    answer = formatExpression(newA, newB, newC, 'kuadrat');
+                } else {
+                    answer = `(${f.expr}) \\cdot (${g.expr})`;
+                }
+
+                const solution = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Tulis definisi perkalian fungsi</p>
+                        <p>$(f \\cdot g)(x) = f(x) \\cdot g(x)$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi fungsi f(x) dan g(x)</p>
+                        <p>$(f \\cdot g)(x) = (${f.expr}) \\cdot (${g.expr})$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Sederhanakan</p>
+                        <p>$(f \\cdot g)(x) = ${answer}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(f \\cdot g)(x) = ${answer}$</p>
+                        </div>
+                    </div>
+                `;
+
+                currentAnswers['perkalian'] = answer;
+                currentSolutions['perkalian'] = solution;
+
+                document.getElementById('latihanPerkalian').innerHTML = soal;
+            }
+            
+            document.getElementById('jawabanPerkalian').value = '';
+            document.getElementById('hasilPerkalian').innerHTML = '';
+            document.getElementById('pembahasanLatihanPerkalian').classList.add('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function cekJawabanPerkalian() {
+            const userAnswer = document.getElementById('jawabanPerkalian').value.trim();
+            const hasilDiv = document.getElementById('hasilPerkalian');
+            
+            if (!userAnswer) {
+                hasilDiv.innerHTML = '<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">Silakan masukkan jawaban terlebih dahulu!</div>';
+                return;
+            }
+
+            const numericAnswer = parseFloat(userAnswer);
+            const correctAnswer = parseFloat(currentAnswers['perkalian']);
+            const isCorrect = Math.abs(numericAnswer - correctAnswer) < 0.001;
+
+            if (isCorrect) {
+                hasilDiv.innerHTML = '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">🎉 Benar! Jawaban Anda tepat!</div>';
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">❌ Jawaban kurang tepat. Jawaban yang benar adalah: ${currentAnswers['perkalian']}</div>`;
+            }
+        }
+
+        function showPembahasanPerkalian() {
+            const pembahasanDiv = document.getElementById('pembahasanLatihanPerkalian');
+            pembahasanDiv.innerHTML = `<h4 class="font-semibold text-purple-800 mb-3">📝 Pembahasan Lengkap:</h4>${currentSolutions['perkalian']}`;
+            pembahasanDiv.classList.remove('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Pembagian Fungsi
+        function generateContohPembagian() {
+            const fungsiType = document.getElementById('pembagianContohFungsi').value;
+            const jenisSoal = document.querySelector('input[name="jenisPembagian"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisSoal === 'nilai') {
+                let x = getValidX(f, g, fungsiType);
+                
+                // Pastikan g(x) tidak nol
+                while (Math.abs(g.func(x)) < 0.001) {
+                    x = Math.floor(Math.random() * 5) + 1;
+                }
+
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(\\frac{f}{g})(${x})$!</p>`;
+                
+                const fVal = Math.round(f.func(x));
+                const gVal = Math.round(g.func(x));
+                const result = fVal / gVal;
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung nilai $f(${x})$</p>
+                        <p>$f(${x}) = ${f.expr.replace(/x/g, `${x}`)} = ${fVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Hitung nilai $g(${x})$</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Periksa syarat $g(${x}) \\neq 0$</p>
+                        <p>Karena $g(${x}) = ${gVal} \\neq 0$, maka pembagian dapat dilakukan.</p>
+                        
+                        <p><strong>Langkah 4:</strong> Lakukan pembagian</p>
+                        <p>$(\\frac{f}{g})(${x}) = \\frac{f(${x})}{g(${x})} = \\frac{${fVal}}{${gVal}} = ${result.toFixed(3)}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $${result.toFixed(3)}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohPembagian').innerHTML = soal;
+                document.getElementById('pembahasanPembagian').innerHTML = pembahasan;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(\\frac{f}{g})(x)$!</p>`;
+                
+                // Buat rumus pembagian
+                let resultExpr = `\\frac{${f.expr}}{${g.expr}}`;
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Tulis definisi pembagian fungsi</p>
+                        <p>$(\\frac{f}{g})(x) = \\frac{f(x)}{g(x)}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi fungsi f(x) dan g(x)</p>
+                        <p>$(\\frac{f}{g})(x) = \\frac{${f.expr}}{${g.expr}}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Tentukan syarat domain</p>
+                        <p>Syarat: $g(x) \\neq 0$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(\\frac{f}{g})(x) = ${resultExpr}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohPembagian').innerHTML = soal;
+                document.getElementById('pembahasanPembagian').innerHTML = pembahasan;
+            }
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function generateLatihanPembagian() {
+            const fungsiType = document.getElementById('pembagianLatihanFungsi').value;
+            const jenisSoal = document.querySelector('input[name="jenisPembagian"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisSoal === 'nilai') {
+                let x = getValidX(f, g, fungsiType);
+                
+                // Pastikan g(x) tidak nol
+                while (Math.abs(g.func(x)) < 0.001) {
+                    x = Math.floor(Math.random() * 5) + 1;
+                }
+
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(\\frac{f}{g})(${x})$!</p>`;
+                
+                const fVal = Math.round(f.func(x));
+                const gVal = Math.round(g.func(x));
+                const answer = fVal / gVal;
+
+                const solution = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung nilai $f(${x})$</p>
+                        <p>$f(${x}) = ${f.expr.replace(/x/g, `${x}`)} = ${fVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Hitung nilai $g(${x})$</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Periksa syarat $g(${x}) \\neq 0$</p>
+                        <p>Karena $g(${x}) = ${gVal} \\neq 0$, maka pembagian dapat dilakukan.</p>
+                        
+                        <p><strong>Langkah 4:</strong> Lakukan pembagian</p>
+                        <p>$(\\frac{f}{g})(${x}) = \\frac{f(${x})}{g(${x})} = \\frac{${fVal}}{${gVal}} = ${answer.toFixed(3)}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $${answer.toFixed(3)}$</p>
+                        </div>
+                    </div>
+                `;
+
+                currentAnswers['pembagian'] = answer.toFixed(3);
+                currentSolutions['pembagian'] = solution;
+
+                document.getElementById('latihanPembagian').innerHTML = soal;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(\\frac{f}{g})(x)$!</p>`;
+                
+                // Buat rumus pembagian
+                let answer = `\\frac{${f.expr}}{${g.expr}}`;
+
+                const solution = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Tulis definisi pembagian fungsi</p>
+                        <p>$(\\frac{f}{g})(x) = \\frac{f(x)}{g(x)}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi fungsi f(x) dan g(x)</p>
+                        <p>$(\\frac{f}{g})(x) = \\frac{${f.expr}}{${g.expr}}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Tentukan syarat domain</p>
+                        <p>Syarat: $g(x) \\neq 0$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(\\frac{f}{g})(x) = ${answer}$</p>
+                        </div>
+                    </div>
+                `;
+
+                currentAnswers['pembagian'] = answer;
+                currentSolutions['pembagian'] = solution;
+
+                document.getElementById('latihanPembagian').innerHTML = soal;
+            }
+            
+            document.getElementById('jawabanPembagian').value = '';
+            document.getElementById('hasilPembagian').innerHTML = '';
+            document.getElementById('pembahasanLatihanPembagian').classList.add('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function cekJawabanPembagian() {
+            const userAnswer = document.getElementById('jawabanPembagian').value.trim();
+            const hasilDiv = document.getElementById('hasilPembagian');
+            
+            if (!userAnswer) {
+                hasilDiv.innerHTML = '<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">Silakan masukkan jawaban terlebih dahulu!</div>';
+                return;
+            }
+
+            const numericAnswer = parseFloat(userAnswer);
+            const correctAnswer = parseFloat(currentAnswers['pembagian']);
+            const isCorrect = Math.abs(numericAnswer - correctAnswer) < 0.01;
+
+            if (isCorrect) {
+                hasilDiv.innerHTML = '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">🎉 Benar! Jawaban Anda tepat!</div>';
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">❌ Jawaban kurang tepat. Jawaban yang benar adalah: ${currentAnswers['pembagian']}</div>`;
+            }
+        }
+
+        function showPembahasanPembagian() {
+            const pembahasanDiv = document.getElementById('pembahasanLatihanPembagian');
+            pembahasanDiv.innerHTML = `<h4 class="font-semibold text-orange-800 mb-3">📝 Pembahasan Lengkap:</h4>${currentSolutions['pembagian']}`;
+            pembahasanDiv.classList.remove('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Domain, Kodomain & Range
+        function generateContohDomain() {
+            const fungsiType = document.getElementById('domainContohFungsi').value;
+            const f = generateFunction(fungsiType);
+
+            const soal = `<p><strong>Soal:</strong></p><p>Diketahui $f(x) = ${f.expr}$</p><p>Tentukan domain, kodomain, dan range dari fungsi f(x)!</p>`;
+            
+            let domain = '';
+            let kodomain = 'ℝ (semua bilangan real)';
+            let range = '';
+            let penjelasan = '';
+            
+            switch(fungsiType) {
+                case 'linear':
+                    domain = 'ℝ (semua bilangan real)';
+                    range = 'ℝ (semua bilangan real)';
+                    penjelasan = 'Fungsi linear tidak memiliki pembatasan domain dan dapat menghasilkan semua nilai real.';
+                    break;
+                case 'pecahan':
+                    // Untuk fungsi f(x) = (ax + b)/(x + c), asimtot horizontal adalah y = a
+                    const asymptote = f.coeffs.a;
+                    domain = `{x ∈ ℝ | x ≠ ${-f.coeffs.c}}`;
+                    range = `{y ∈ ℝ | y ≠ ${asymptote}}`;
+                    penjelasan = `
+                        <div class="space-y-2">
+                            <p><strong>Langkah 1:</strong> Identifikasi syarat domain</p>
+                            <p>• Penyebut tidak boleh nol: x + ${f.coeffs.c} ≠ 0</p>
+                            <p>• Sehingga: x ≠ ${-f.coeffs.c}</p>
+                            <p><strong>Langkah 2:</strong> Tentukan asimtot horizontal</p>
+                            <p>• Untuk fungsi $f(x) = \\frac{${f.coeffs.a}x + ${f.coeffs.b}}{x + ${f.coeffs.c}}$</p>
+                            <p>• Asimtot horizontal: $y = \\frac{\\text{koefisien x pembilang}}{\\text{koefisien x penyebut}} = \\frac{${f.coeffs.a}}{1} = ${asymptote}$</p>
+                            <p><strong>Langkah 3:</strong> Tentukan range</p>
+                            <p>• Range tidak mencapai nilai asimtot horizontal</p>
+                            <p><strong>Kesimpulan:</strong> Range = {y ∈ ℝ | y ≠ ${asymptote}}</p>
+                        </div>
+                    `;
+                    break;
+                case 'akar':
+                    // Konversi ke pecahan menggunakan helper function
+                    const batasFraction = toFraction(-f.coeffs.b, f.coeffs.a);
+                    
+                    domain = `[${batasFraction}, ∞)`;
+                    range = '[0, ∞)';
+                    penjelasan = `
+                        <div class="space-y-2">
+                            <p><strong>Langkah 1:</strong> Identifikasi syarat domain</p>
+                            <p>• Nilai dalam akar harus non-negatif: ${f.coeffs.a}x + ${f.coeffs.b} ≥ 0</p>
+                            <p>• Sehingga: ${f.coeffs.a}x ≥ ${-f.coeffs.b}</p>
+                            <p>• x ≥ $${batasFraction}$</p>
+                            <p><strong>Langkah 2:</strong> Tentukan range</p>
+                            <p>• Hasil akar kuadrat selalu non-negatif</p>
+                            <p><strong>Kesimpulan:</strong> Range = [0, ∞)</p>
+                        </div>
+                    `;
+                    break;
+            }
+
+            const pembahasan = `
+                <div class="space-y-3">
+                    <p><strong>Analisis:</strong></p>
+                    <p>${penjelasan}</p>
+                    
+                    <div class="bg-green-100 p-3 rounded-lg space-y-2">
+                        <p><strong>Domain:</strong> ${domain}</p>
+                        <p><strong>Kodomain:</strong> ${kodomain}</p>
+                        <p><strong>Range:</strong> ${range}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('contohDomain').innerHTML = soal;
+            document.getElementById('pembahasanDomain').innerHTML = pembahasan;
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function generateLatihanDomain() {
+            const fungsiType = document.getElementById('domainLatihanFungsi').value;
+            const f = generateFunction(fungsiType);
+
+            const soal = `<p><strong>Soal:</strong></p><p>Diketahui $f(x) = ${f.expr}$</p><p>Tentukan domain dari fungsi f(x)!</p>`;
+            
+            let answer = '';
+            let solution = '';
+            
+            switch(fungsiType) {
+                case 'linear':
+                    answer = 'semua bilangan real';
+                    solution = `
+                        <div class="space-y-3">
+                            <p><strong>Analisis:</strong></p>
+                            <p>Fungsi linear tidak memiliki pembatasan domain, sehingga dapat menerima semua nilai real.</p>
+                            
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <p><strong>Domain:</strong> Semua bilangan real (ℝ)</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'pecahan':
+                    answer = `x ≠ ${-f.coeffs.c}`;
+                    solution = `
+                        <div class="space-y-3">
+                            <p><strong>Analisis:</strong></p>
+                            <p>Untuk fungsi pecahan, penyebut tidak boleh nol.</p>
+                            <p>Syarat: x + ${f.coeffs.c} ≠ 0</p>
+                            <p>Sehingga: x ≠ ${-f.coeffs.c}</p>
+                            
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <p><strong>Domain:</strong> x ≠ ${-f.coeffs.c}</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'akar':
+                    const batasFractionLatihan = toFraction(-f.coeffs.b, f.coeffs.a);
+                    answer = `x ≥ ${batasFractionLatihan}`;
+                    solution = `
+                        <div class="space-y-3">
+                            <p><strong>Analisis:</strong></p>
+                            <p>Untuk fungsi akar, nilai dalam akar harus non-negatif.</p>
+                            <p>Syarat: ${f.coeffs.a}x + ${f.coeffs.b} ≥ 0</p>
+                            <p>Sehingga: x ≥ $${batasFractionLatihan}$</p>
+                            
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <p><strong>Domain:</strong> x ≥ $${batasFractionLatihan}$</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+
+            currentAnswers['domain'] = answer;
+            currentSolutions['domain'] = solution;
+
+            document.getElementById('latihanDomain').innerHTML = soal;
+            document.getElementById('jawabanDomain').value = '';
+            document.getElementById('hasilDomain').innerHTML = '';
+            document.getElementById('pembahasanLatihanDomain').classList.add('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function cekJawabanDomain() {
+            const userAnswer = document.getElementById('jawabanDomain').value.trim().toLowerCase();
+            const hasilDiv = document.getElementById('hasilDomain');
+            
+            if (!userAnswer) {
+                hasilDiv.innerHTML = '<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">Silakan masukkan jawaban terlebih dahulu!</div>';
+                return;
+            }
+
+            const correctAnswer = currentAnswers['domain'].toLowerCase();
+            const isCorrect = userAnswer.includes('real') || userAnswer.includes('ℝ') || 
+                             userAnswer.includes('≠') || userAnswer.includes('≥') ||
+                             userAnswer.includes(correctAnswer) ||
+                             (correctAnswer.includes('real') && (userAnswer.includes('semua') || userAnswer.includes('real')));
+
+            if (isCorrect) {
+                hasilDiv.innerHTML = '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">🎉 Benar! Jawaban Anda tepat!</div>';
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">❌ Jawaban kurang tepat. Jawaban yang benar adalah: ${currentAnswers['domain']}</div>`;
+            }
+        }
+
+        function showPembahasanDomain() {
+            const pembahasanDiv = document.getElementById('pembahasanLatihanDomain');
+            pembahasanDiv.innerHTML = `<h4 class="font-semibold text-red-800 mb-3">📝 Pembahasan Lengkap:</h4>${currentSolutions['domain']}`;
+            pembahasanDiv.classList.remove('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Menentukan Nilai Fungsi
+        function generateContohNilai() {
+            const fungsiType = document.getElementById('nilaiContohFungsi').value;
+            const f = generateFunction(fungsiType);
+            const x = Math.floor(Math.random() * 5) + 1;
+
+            const soal = `<p><strong>Soal:</strong></p><p>Diketahui $f(x) = ${f.expr}$</p><p>Tentukan nilai $f(${x})$!</p>`;
+            
+            const result = f.func(x);
+
+            const pembahasan = `
+                <div class="space-y-3">
+                    <p><strong>Langkah 1:</strong> Substitusi nilai $x = ${x}$ ke dalam fungsi</p>
+                    <p>$f(${x}) = ${f.expr.replace(/x/g, `(${x})`)}$</p>
+                    
+                    <p><strong>Langkah 2:</strong> Hitung hasilnya</p>
+                    <p>$f(${x}) = ${result}$</p>
+                    
+                    <div class="bg-green-100 p-3 rounded-lg">
+                        <p><strong>Jawaban:</strong> $f(${x}) = ${result}$</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('contohNilai').innerHTML = soal;
+            document.getElementById('pembahasanNilai').innerHTML = pembahasan;
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function generateLatihanNilai() {
+            const fungsiType = document.getElementById('nilaiLatihanFungsi').value;
+            const f = generateFunction(fungsiType);
+            const x = Math.floor(Math.random() * 5) + 1;
+
+            const soal = `<p><strong>Soal:</strong></p><p>Diketahui $f(x) = ${f.expr}$</p><p>Tentukan nilai $f(${x})$!</p>`;
+            
+            const answer = f.func(x);
+
+            const solution = `
+                <div class="space-y-3">
+                    <p><strong>Langkah 1:</strong> Substitusi nilai $x = ${x}$ ke dalam fungsi</p>
+                    <p>$f(${x}) = ${f.expr.replace(/x/g, `(${x})`)}$</p>
+                    
+                    <p><strong>Langkah 2:</strong> Hitung hasilnya</p>
+                    <p>$f(${x}) = ${answer}$</p>
+                    
+                    <div class="bg-green-100 p-3 rounded-lg">
+                        <p><strong>Jawaban:</strong> $f(${x}) = ${answer}$</p>
+                    </div>
+                </div>
+            `;
+
+            currentAnswers['nilai'] = answer.toString();
+            currentSolutions['nilai'] = solution;
+
+            document.getElementById('latihanNilai').innerHTML = soal;
+            document.getElementById('jawabanNilai').value = '';
+            document.getElementById('hasilNilai').innerHTML = '';
+            document.getElementById('pembahasanLatihanNilai').classList.add('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function cekJawabanNilai() {
+            const userAnswer = document.getElementById('jawabanNilai').value.trim();
+            const hasilDiv = document.getElementById('hasilNilai');
+            
+            if (!userAnswer) {
+                hasilDiv.innerHTML = '<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">Silakan masukkan jawaban terlebih dahulu!</div>';
+                return;
+            }
+
+            const numericAnswer = parseFloat(userAnswer);
+            const correctAnswer = parseFloat(currentAnswers['nilai']);
+            const isCorrect = Math.abs(numericAnswer - correctAnswer) < 0.001;
+
+            if (isCorrect) {
+                hasilDiv.innerHTML = '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">🎉 Benar! Jawaban Anda tepat!</div>';
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">❌ Jawaban kurang tepat. Jawaban yang benar adalah: ${currentAnswers['nilai']}</div>`;
+            }
+        }
+
+        function showPembahasanNilai() {
+            const pembahasanDiv = document.getElementById('pembahasanLatihanNilai');
+            pembahasanDiv.innerHTML = `<h4 class="font-semibold text-indigo-800 mb-3">📝 Pembahasan Lengkap:</h4>${currentSolutions['nilai']}`;
+            pembahasanDiv.classList.remove('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Fungsi Komposisi
+        function generateContohKomposisi() {
+            const fungsiType = document.getElementById('komposisiContohFungsi').value;
+            const jenisKomposisi = document.querySelector('input[name="jenisKomposisi"]:checked').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            
+            if (jenisKomposisi === 'nilai') {
+                const x = getValidX(f, g, fungsiType);
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f \\circ g)(${x})$!</p>`;
+                
+                const gVal = Math.round(g.func(x));
+                const result = Math.round(f.func(gVal));
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Hitung $g(${x})$ terlebih dahulu</p>
+                        <p>$g(${x}) = ${g.expr.replace(/x/g, `${x}`)} = ${gVal}$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Substitusi hasil $g(${x})$ ke dalam $f(x)$</p>
+                        <p>$(f \\circ g)(${x}) = f(g(${x})) = f(${gVal})$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Hitung $f(${gVal})$</p>
+                        <p>$f(${gVal}) = ${f.expr.replace(/x/g, `${gVal}`)} = ${result}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(f \\circ g)(${x}) = ${result}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohKomposisi').innerHTML = soal;
+                document.getElementById('pembahasanKomposisi').innerHTML = pembahasan;
+            } else {
+                const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f \\circ g)(x)$!</p>`;
+                
+                // Buat rumus komposisi
+                let compositeExpr = f.expr.replace(/x/g, `(${g.expr})`);
+                
+                // Sederhanakan untuk kasus linear
+                if (fungsiType === 'linear') {
+                    const a1 = f.coeffs.a, b1 = f.coeffs.b;
+                    const a2 = g.coeffs.a, b2 = g.coeffs.b;
+                    const newA = a1 * a2;
+                    const newB = a1 * b2 + b1;
+                    compositeExpr = formatExpression(newA, newB, 0, 'linear');
+                }
+
+                const pembahasan = `
+                    <div class="space-y-3">
+                        <p><strong>Langkah 1:</strong> Substitusi $g(x)$ ke dalam $f(x)$</p>
+                        <p>$(f \\circ g)(x) = f(g(x)) = f(${g.expr})$</p>
+                        
+                        <p><strong>Langkah 2:</strong> Ganti setiap $x$ dalam $f(x)$ dengan $g(x)$</p>
+                        <p>$(f \\circ g)(x) = ${f.expr.replace(/x/g, `(${g.expr})`)}$</p>
+                        
+                        <p><strong>Langkah 3:</strong> Sederhanakan</p>
+                        <p>$(f \\circ g)(x) = ${compositeExpr}$</p>
+                        
+                        <div class="bg-green-100 p-3 rounded-lg">
+                            <p><strong>Jawaban:</strong> $(f \\circ g)(x) = ${compositeExpr}$</p>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('contohKomposisi').innerHTML = soal;
+                document.getElementById('pembahasanKomposisi').innerHTML = pembahasan;
+            }
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function generateLatihanKomposisi() {
+            const fungsiType = document.getElementById('komposisiLatihanFungsi').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+            const x = Math.floor(Math.random() * 5) + 1;
+
+            const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan $(f \\circ g)(${x})$!</p>`;
+            
+            const gVal = g.func(x);
+            const answer = f.func(gVal);
+
+            const solution = `
+                <div class="space-y-3">
+                    <p><strong>Langkah 1:</strong> Hitung $g(${x})$ terlebih dahulu</p>
+                    <p>$g(${x}) = ${g.expr.replace(/x/g, `(${x})`)} = ${gVal}$</p>
+                    
+                    <p><strong>Langkah 2:</strong> Substitusi hasil $g(${x})$ ke dalam $f(x)$</p>
+                    <p>$(f \\circ g)(${x}) = f(g(${x})) = f(${gVal})$</p>
+                    
+                    <p><strong>Langkah 3:</strong> Hitung $f(${gVal})$</p>
+                    <p>$f(${gVal}) = ${f.expr.replace(/x/g, `(${gVal})`)} = ${answer}$</p>
+                    
+                    <div class="bg-green-100 p-3 rounded-lg">
+                        <p><strong>Jawaban:</strong> $(f \\circ g)(${x}) = ${answer}$</p>
+                    </div>
+                </div>
+            `;
+
+            currentAnswers['komposisi'] = answer.toString();
+            currentSolutions['komposisi'] = solution;
+
+            document.getElementById('latihanKomposisi').innerHTML = soal;
+            document.getElementById('jawabanKomposisi').value = '';
+            document.getElementById('hasilKomposisi').innerHTML = '';
+            document.getElementById('pembahasanLatihanKomposisi').classList.add('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function cekJawabanKomposisi() {
+            const userAnswer = document.getElementById('jawabanKomposisi').value.trim();
+            const hasilDiv = document.getElementById('hasilKomposisi');
+            
+            if (!userAnswer) {
+                hasilDiv.innerHTML = '<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">Silakan masukkan jawaban terlebih dahulu!</div>';
+                return;
+            }
+
+            const numericAnswer = parseFloat(userAnswer);
+            const correctAnswer = parseFloat(currentAnswers['komposisi']);
+            const isCorrect = Math.abs(numericAnswer - correctAnswer) < 0.001;
+
+            if (isCorrect) {
+                hasilDiv.innerHTML = '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">🎉 Benar! Jawaban Anda tepat!</div>';
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">❌ Jawaban kurang tepat. Jawaban yang benar adalah: ${currentAnswers['komposisi']}</div>`;
+            }
+        }
+
+        function showPembahasanKomposisi() {
+            const pembahasanDiv = document.getElementById('pembahasanLatihanKomposisi');
+            pembahasanDiv.innerHTML = `<h4 class="font-semibold text-pink-800 mb-3">📝 Pembahasan Lengkap:</h4>${currentSolutions['komposisi']}`;
+            pembahasanDiv.classList.remove('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Domain Fungsi Komposisi
+        function generateContohDomainKomposisi() {
+            const fungsiType = document.getElementById('domainKomposisiContohFungsi').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+
+            const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan domain dari $(f \\circ g)(x)$!</p>`;
+            
+            let domain = '';
+            let penjelasan = '';
+            
+            switch(fungsiType) {
+                case 'linear':
+                    domain = 'Semua bilangan real (ℝ)';
+                    penjelasan = 'Karena kedua fungsi adalah fungsi linear, maka domain komposisinya adalah semua bilangan real.';
+                    break;
+                case 'kuadrat':
+                    domain = 'Semua bilangan real (ℝ)';
+                    penjelasan = 'Karena kedua fungsi adalah fungsi kuadrat, maka domain komposisinya adalah semua bilangan real.';
+                    break;
+                case 'pecahan':
+                    domain = `x ≠ ${-g.coeffs.c} dan g(x) ≠ ${-f.coeffs.c}`;
+                    penjelasan = 'Untuk fungsi pecahan, kita harus memastikan penyebut tidak sama dengan nol pada kedua fungsi.';
+                    break;
+                case 'akar':
+                    const batasGFraction = toFraction(-g.coeffs.b, g.coeffs.a);
+                    const batasFKomposisi = toFraction(-f.coeffs.b, f.coeffs.a);
+                    domain = `x ≥ ${batasGFraction} dan g(x) ≥ ${batasFKomposisi}`;
+                    penjelasan = 'Untuk fungsi akar, nilai di dalam akar harus non-negatif pada kedua fungsi.';
+                    break;
+            }
+
+            const pembahasan = `
+                <div class="space-y-3">
+                    <p><strong>Konsep:</strong> Domain $(f \\circ g)(x)$ adalah himpunan semua $x$ dalam domain $g$ sedemikian sehingga $g(x)$ berada dalam domain $f$.</p>
+                    
+                    <p><strong>Analisis:</strong></p>
+                    <p>${penjelasan}</p>
+                    
+                    <div class="bg-green-100 p-3 rounded-lg">
+                        <p><strong>Domain:</strong> ${domain}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('contohDomainKomposisi').innerHTML = soal;
+            document.getElementById('pembahasanDomainKomposisi').innerHTML = pembahasan;
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function generateLatihanDomainKomposisi() {
+            const fungsiType = document.getElementById('domainKomposisiLatihanFungsi').value;
+            const f = generateFunction(fungsiType);
+            const g = generateFunction(fungsiType);
+
+            const soal = `<p><strong>Soal:</strong></p><p>Diketahui:</p><p>$f(x) = ${f.expr}$</p><p>$g(x) = ${g.expr}$</p><p>Tentukan domain dari $(f \\circ g)(x)$!</p>`;
+            
+            let answer = '';
+            let solution = '';
+            
+            switch(fungsiType) {
+                case 'linear':
+                    answer = 'semua bilangan real';
+                    solution = `
+                        <div class="space-y-3">
+                            <p><strong>Konsep:</strong> Domain $(f \\circ g)(x)$ adalah himpunan semua $x$ dalam domain $g$ sedemikian sehingga $g(x)$ berada dalam domain $f$.</p>
+                            
+                            <p><strong>Analisis:</strong></p>
+                            <p>Karena kedua fungsi adalah fungsi linear, maka domain komposisinya adalah semua bilangan real.</p>
+                            
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <p><strong>Domain:</strong> Semua bilangan real (ℝ)</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'kuadrat':
+                    answer = 'semua bilangan real';
+                    solution = `
+                        <div class="space-y-3">
+                            <p><strong>Konsep:</strong> Domain $(f \\circ g)(x)$ adalah himpunan semua $x$ dalam domain $g$ sedemikian sehingga $g(x)$ berada dalam domain $f$.</p>
+                            
+                            <p><strong>Analisis:</strong></p>
+                            <p>Karena kedua fungsi adalah fungsi kuadrat, maka domain komposisinya adalah semua bilangan real.</p>
+                            
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <p><strong>Domain:</strong> Semua bilangan real (ℝ)</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'pecahan':
+                    answer = `x ≠ ${-g.coeffs.c} dan g(x) ≠ ${-f.coeffs.c}`;
+                    solution = `
+                        <div class="space-y-3">
+                            <p><strong>Konsep:</strong> Domain $(f \\circ g)(x)$ adalah himpunan semua $x$ dalam domain $g$ sedemikian sehingga $g(x)$ berada dalam domain $f$.</p>
+                            
+                            <p><strong>Analisis:</strong></p>
+                            <p>1. Domain g(x): x ≠ ${-g.coeffs.c}</p>
+                            <p>2. Domain f(x): x ≠ ${-f.coeffs.c}</p>
+                            <p>3. Untuk komposisi: g(x) ≠ ${-f.coeffs.c}</p>
+                            
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <p><strong>Domain:</strong> x ≠ ${-g.coeffs.c} dan g(x) ≠ ${-f.coeffs.c}</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'akar':
+                    const batasGLatihanFraction = toFraction(-g.coeffs.b, g.coeffs.a);
+                    const batasFLatihanFraction = toFraction(-f.coeffs.b, f.coeffs.a);
+                    answer = `x ≥ ${batasGLatihanFraction} dan g(x) ≥ ${batasFLatihanFraction}`;
+                    solution = `
+                        <div class="space-y-3">
+                            <p><strong>Konsep:</strong> Domain $(f \\circ g)(x)$ adalah himpunan semua $x$ dalam domain $g$ sedemikian sehingga $g(x)$ berada dalam domain $f$.</p>
+                            
+                            <p><strong>Analisis:</strong></p>
+                            <p>1. Domain g(x): x ≥ $${batasGLatihanFraction}$</p>
+                            <p>2. Domain f(x): x ≥ $${batasFLatihanFraction}$</p>
+                            <p>3. Untuk komposisi: g(x) ≥ $${batasFLatihanFraction}$</p>
+                            
+                            <div class="bg-green-100 p-3 rounded-lg">
+                                <p><strong>Domain:</strong> x ≥ $${batasGLatihanFraction}$ dan g(x) ≥ $${batasFLatihanFraction}$</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+
+            currentAnswers['domain-komposisi'] = answer;
+            currentSolutions['domain-komposisi'] = solution;
+
+            document.getElementById('latihanDomainKomposisi').innerHTML = soal;
+            document.getElementById('jawabanDomainKomposisi').value = '';
+            document.getElementById('hasilDomainKomposisi').innerHTML = '';
+            document.getElementById('pembahasanLatihanDomainKomposisi').classList.add('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function cekJawabanDomainKomposisi() {
+            const userAnswer = document.getElementById('jawabanDomainKomposisi').value.trim().toLowerCase();
+            const hasilDiv = document.getElementById('hasilDomainKomposisi');
+            
+            if (!userAnswer) {
+                hasilDiv.innerHTML = '<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">Silakan masukkan jawaban terlebih dahulu!</div>';
+                return;
+            }
+
+            const correctAnswer = currentAnswers['domain-komposisi'].toLowerCase();
+            const isCorrect = userAnswer.includes('real') || userAnswer.includes('ℝ') || 
+                             userAnswer.includes('≠') || userAnswer.includes('≥') ||
+                             userAnswer.includes('dan') ||
+                             (correctAnswer.includes('real') && (userAnswer.includes('semua') || userAnswer.includes('real')));
+
+            if (isCorrect) {
+                hasilDiv.innerHTML = '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">🎉 Benar! Jawaban Anda tepat!</div>';
+            } else {
+                hasilDiv.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">❌ Jawaban kurang tepat. Jawaban yang benar adalah: ${currentAnswers['domain-komposisi']}</div>`;
+            }
+        }
+
+        function showPembahasanDomainKomposisi() {
+            const pembahasanDiv = document.getElementById('pembahasanLatihanDomainKomposisi');
+            pembahasanDiv.innerHTML = `<h4 class="font-semibold text-teal-800 mb-3">📝 Pembahasan Lengkap:</h4>${currentSolutions['domain-komposisi']}`;
+            pembahasanDiv.classList.remove('hidden');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        // Initialize
+        showTopic('penjumlahan');
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9726dd0272509de3',t:'MTc1NTc0NTA1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
